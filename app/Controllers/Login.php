@@ -74,7 +74,7 @@ class Login extends BaseController
                     'role'  => 'user', // Default role for new users
                 ];
                 $this->userModel->insert($newUser);
-                $newUserId = $this->userModel->insertID();
+                $newUserId = $this->userModel->getInsertID();
 
                 $this->session->set('isLoggedIn', true);
                 $this->session->set('userId', $newUserId);

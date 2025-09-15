@@ -8,5 +8,7 @@ class News extends BaseController
     {
         return view('admin/news/index');
     }
+
+ 
  
 }
