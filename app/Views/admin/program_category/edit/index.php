@@ -8,12 +8,9 @@
         <!-- 2. Create a row. Use flexbox utilities to center the column inside it -->
         <div class="row">
 
-            <!-- 3. Define the column width. This is the key to responsiveness -->
-            <!-- "col-md-8" means it takes 8/12 of the width on medium screens and up -->
-            <!-- "col-lg-6" means it takes 6/12 of the width on large screens and up -->
-            <!-- On small (mobile) screens, it will automatically be full-width (12/12) -->
+
             <div class="col-md-8 col-lg-8 card py-5 px-5">
-               
+
                 <?php if (session()->getFlashdata('errors')): ?>
                     <div class="alert alert-danger">
                         <ul>
@@ -31,19 +28,34 @@
                 <?php endif; ?>
 
 
-                <form action="/admin/news_category/" method="post">
+                <form action="/admin/program_category/<?= $program_category['id']; ?>" method="post" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="mb-4">
-                        <label for="title" class="form-label">የዜና ምድብ ርዕስ</label>
-                        <input type="title" class="form-control" name="title" id="title" aria-describedby="emailHelp">
+                        <input type="hidden" name="_method" value="PUT" />
+                        <input type="hidden" name="id" value="<?php echo $program_category['id'] ?>">
                     </div>
+
+                    <div class="mb-4">
+                        <label for="title" class="form-label">የፕሮግራም ምድብ ርዕስ</label>
+                        <input type="title" class="form-control" name="title" id="title" aria-describedby="emailHelp"
+                            value="<?= $program_category['title'] ?>">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="image" class="form-label">የፕሮግራም ምድብ ምስል</label>
+                        <input type="file" class="form-control" name="image" id="image" aria-describedby="emailHelp">
+                    </div>
+
+
 
                     <div class="mb-4">
                         <label for="description">የዜና ምድብ መግለጫ</label>
                         <textarea class="form-control" name="description" placeholder="ስለ ዜና ምድብ እዚህ ይግለጹ"
-                            id="description" style="height: 100px"></textarea>
+                            id="description" style="height: 100px"> <?= $program_category['description'] ?></textarea>
 
                     </div>
+
+
                     <button type="submit" class="btn btn-primary">አስገባ</button>
                 </form>
 

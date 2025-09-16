@@ -28,7 +28,8 @@ class NewsCategory extends BaseController
     public function create()
     {
         $model = new NewsCategoryModel();
-
+        $session = session();
+        $userId = $session->get('userId');
         $rules = [
             'title' => [
                 'label' => 'Title', // Human-readable name for the field
@@ -45,13 +46,13 @@ class NewsCategory extends BaseController
 
         ];
 
+
         if (!$this->validate($rules)) {
-            // If validation fails, redirect back to the form with errors
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
-        $userId = session()->get('user_id');
+
+        $userId = session()->get('userId');
         if (!$userId) {
-            // Handle case where user is not logged in or session expired
             return redirect()->to('/login')->with('error', 'You must be logged in to create a category.');
         }
 
@@ -62,7 +63,7 @@ class NewsCategory extends BaseController
         ];
 
         if ($model->save($data)) {
-            return redirect()->to('/admin/news_category')->with('message', 'News category created successfully.');
+            return redirect()->to('/admin/news_category/new')->with('message', 'News category created successfully.');
         } else {
             // This case is for database errors, not validation errors.
             return redirect()->back()->withInput()->with('errors', ['database' => 'Failed to save the category to the database.']);
@@ -77,7 +78,7 @@ class NewsCategory extends BaseController
         $model = new NewsCategoryModel();
         $data['news_category'] = $model->find($id);
 
-        return view('admin/news_category/edit', $data);
+        return view('admin/news_category/edit/index', $data);
     }
 
     /**
@@ -88,9 +89,30 @@ class NewsCategory extends BaseController
         $model = new NewsCategoryModel();
 
         $data = [
-            'name' => $this->request->getPost('name'),
-            'slug' => url_title($this->request->getPost('name'), '-', true),
+            'title' => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description')
         ];
+
+        $rules = [
+            'title' => [
+                'label' => 'Title',
+                'rules' => "required|min_length[3]|max_length[255]|is_unique[news_categories.title,id,{$id}]",
+                'errors' => [
+                    'required' => 'The category {field} is required.',
+                    'is_unique' => 'This category title already exists. Please choose another.'
+                ]
+            ],
+            'description' => [
+                'label' => 'Description',
+                'rules' => 'permit_empty|min_length[10]', // 'permit_empty' allows it to be optional
+            ]
+
+        ];
+
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
 
         if ($model->update($id, $data)) {
             return redirect()->to('/admin/news_category')->with('message', 'News category updated successfully.');

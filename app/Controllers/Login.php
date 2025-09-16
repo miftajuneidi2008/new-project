@@ -12,6 +12,8 @@ class Login extends BaseController
     {
          $this->session = \Config\Services::session();
         $this->userModel = new User();
+
+        
         
         $this->googleClient = new \Google\Client();
         $this->googleClient->setClientId(env('google.client.id'));
@@ -52,6 +54,8 @@ class Login extends BaseController
             $user = $this->userModel->getUserByEmail($email);
 
             if ($user) {
+
+              
                 // User exists, log them in
                 $this->session->set('isLoggedIn', true);
                 $this->session->set('userId', $user['id']);
@@ -59,6 +63,9 @@ class Login extends BaseController
                 $this->session->set('userEmail', $user['email']);
                 $this->session->set('userRole', $user['role']);
                 $this->session->set('userAvatar', $user['avatar']);
+
+                log_message('debug', 'Session data set for existing user: ' . print_r($this->session->get(), true));
+
 
                 if ($user['role'] === 'admin') {
                     return redirect()->to('/admin')->with('success', 'Welcome Admin!');

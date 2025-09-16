@@ -31,17 +31,21 @@
                 <?php endif; ?>
 
 
-                <form action="/admin/news_category/" method="post">
+                <form action="/admin/news_category/<?= $news_category['id']?>" method="post">
                     <?= csrf_field() ?>
                     <div class="mb-4">
+                        <input type="hidden" name="_method" value="PUT" />
+                        <input type="hidden" name="id" value="<?php echo $news_category['id'] ?>">
+                    </div>
+                    <div class="mb-4">
                         <label for="title" class="form-label">የዜና ምድብ ርዕስ</label>
-                        <input type="title" class="form-control" name="title" id="title" aria-describedby="emailHelp">
+                        <input type="title" class="form-control" name="title" id="title" aria-describedby="emailHelp" value="<?= $news_category['title'] ?>">
                     </div>
 
                     <div class="mb-4">
                         <label for="description">የዜና ምድብ መግለጫ</label>
                         <textarea class="form-control" name="description" placeholder="ስለ ዜና ምድብ እዚህ ይግለጹ"
-                            id="description" style="height: 100px"></textarea>
+                            id="description" style="height: 100px"> <?= $news_category['description'] ?></textarea>
 
                     </div>
                     <button type="submit" class="btn btn-primary">አስገባ</button>

@@ -31,15 +31,20 @@
                 <?php endif; ?>
 
 
-                <form action="/admin/news_category/" method="post">
+                <form action="/admin/program_category/" method="post" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="mb-4">
-                        <label for="title" class="form-label">የዜና ምድብ ርዕስ</label>
-                        <input type="title" class="form-control" name="title" id="title" aria-describedby="emailHelp">
+                        <label for="title" class="form-label">የፕሮግራም ምድብ ርዕስ</label>
+                        <input type="title" class="form-control" name="title" id="title" aria-describedby="emailHelp" placeholder="ፕሮግራም ምድብ ርዕስ">
+                    </div>
+
+                     <div class="mb-4">
+                        <label for="image" class="form-label">የፕሮግራም ምድብ ምስል</label>
+                        <input type="file" class="form-control" name="image" id="image" aria-describedby="emailHelp">
                     </div>
 
                     <div class="mb-4">
-                        <label for="description">የዜና ምድብ መግለጫ</label>
+                        <label for="description">የፕሮግራም ምድብ መግለጫ</label>
                         <textarea class="form-control" name="description" placeholder="ስለ ዜና ምድብ እዚህ ይግለጹ"
                             id="description" style="height: 100px"></textarea>
 
