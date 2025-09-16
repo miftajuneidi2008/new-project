@@ -48,22 +48,50 @@
                                     class="btn btn-primary">Edit</a>
                             </td>
                             <td>
-                                <a class="btn btn-danger"
-                                    onclick='if(confirm(`Do you want delete this record`)) { document.forms[`form_<?= $news_data["id"] ?>`].submit() }'>Delete</a>
+                                <button type="button" class="btn btn-danger delete-btn"
+                                    data-url="<?= base_url('/admin/news/' . $news_data['id']) ?>">
+                                    Delete
+                                </button>
+
                             </td>
                         </tr>
 
-                        <form action='/admin/news/<?= $news_data['id'] ?>' method='post' name='form_<?= $news_data['id'] ?>'
-                            class="d-none">
-                            <?= csrf_field() ?>
-                            <input type='hidden' name='_method' value='DELETE' />
-                        </form>
+
 
                     <?php endforeach ?>
 
 
                 </tbody>
             </table>
+            <form id="deleteForm" method="post" class="d-none">
+                <?= csrf_field() ?>
+                <input type='hidden' name='_method' value='DELETE' />
+            </form>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Find the single form
+                    const deleteForm = document.getElementById('deleteForm');
+
+                    // Find all delete buttons
+                    const deleteButtons = document.querySelectorAll('.delete-btn');
+
+                    // Add a click listener to each button
+                    deleteButtons.forEach(button => {
+                        button.addEventListener('click', function () {
+                            // Get the URL from the button's data-url attribute
+                            const deleteUrl = this.getAttribute('data-url');
+
+                            if (confirm('Do you really want to delete this record?')) {
+                                // Set the form's action to the correct URL
+                                deleteForm.setAttribute('action', deleteUrl);
+                                // Submit the form
+                                deleteForm.submit();
+                            }
+                        });
+                    });
+                });
+            </script>
         </div>
     </div>
 </div>
