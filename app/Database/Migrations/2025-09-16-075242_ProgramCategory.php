@@ -20,7 +20,7 @@ class ProgramCategory extends Migration
                 'constraint' => 11,
                 'unsigned'   => true,
             ],
-            'title' => [
+            'category_title' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],

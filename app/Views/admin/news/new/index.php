@@ -28,7 +28,7 @@
                 <?php endif; ?>
 
 
-                <form action="/admin/news/<?= $news['id'];?>" method="post" enctype="multipart/form-data">
+                <form action="/admin/news/" method="post" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="mb-4">
                         <label for="title" class="form-label">የዜና ምድብ ርዕስ</label>

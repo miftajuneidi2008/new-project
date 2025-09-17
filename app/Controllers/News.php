@@ -21,7 +21,7 @@ class News extends BaseController
     public function new()
     {
         $category_Model = new NewsCategoryModel();
-        $data['program_categories'] = $category_Model->findAll();
+        $data['news_categories'] = $category_Model->findAll();
         return view('admin/news/new/index', $data);
     }
 

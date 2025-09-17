@@ -92,3 +92,63 @@ body{
                 margin-bottom: 1rem;
             }
         }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: inline-block; /* Allows the border to fit the text width */
+            padding-bottom: 0.5rem;
+            /* The purple underline */
+            border-bottom: 3px solid #6f42c1; 
+            margin-top: 4rem;
+        }
+
+        /* Styling for each individual news item */
+        .news-item img {
+            width: 130px; /* Fixed width for the image */
+            height: 90px;  /* Fixed height for the image */
+            object-fit: cover; /* Ensures the image covers the area without distortion */
+            border-radius: 8px; /* Rounded corners for the image */
+        }
+        
+        /* The category tag above the title */
+        .category-tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff; /* White text for all tags */
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* News title styling */
+        .news-title {
+            text-decoration: none; /* Removes the underline from the link */
+            color: #212529; /* Dark color for the title */
+            font-weight: 600;
+            font-size: 1rem;
+            display: block; /* Makes the link take up the full width */
+            transition: color 0.2s ease-in-out;
+        }
+
+        .news-title:hover {
+            color: #6f42c1; /* Change color on hover */
+        }
+
+        /* Date text styling */
+        .news-date {
+            font-size: 0.85rem;
+            color: #6c757d; /* Muted gray color */
+        }
+
+        /* Custom background colors for tags */
+        .tag-siltie { background-color: #6f42c1; }
+        .tag-central-ethiopia { background-color: #fd7e14; }
+        .tag-ethiopia { background-color: #0d6efd; }
+        .tag-africa { background-color: #198754; }
+        .tag-world { background-color: #0dcaf0; }
+        .tag-business { background-color: #20c997; }
+        .tag-sport { background-color: #d63384; }
+

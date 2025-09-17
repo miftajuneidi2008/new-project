@@ -27,7 +27,7 @@ class ProgramCategoryModel extends Model
     protected $allowedFields = [
         'user_id',
         'photo',
-        'title',
+        'category_title',
         'description'
     ];
 

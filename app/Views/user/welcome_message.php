@@ -20,8 +20,8 @@
 
 <body>
 
-    <header class="bg-white">
-        <nav class="navbar navbar-expand-lg py-4 py-lg-0 shadow">
+    <header class="bg-white shadow sticky-top">
+        <nav class="navbar navbar-expand-lg py-4 py-lg-0  bg-white">
             <div class="container px-4">
                 <img src="/logo.png" alt="siltie fm logo" width="80" height="50">
                 <button class="navbar-toggler border-0 text-black" type="button" data-bs-toggle="offcanvas"
@@ -58,11 +58,11 @@
 
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active btn btn-success px-3 text-white" aria-current="page" href="#"
+                            <a class="btn btn-outline-danger" aria-current="page" href="#"
                                 id="liveStreamButton">ቀጥታ</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active btn btn-primary text-white px-3" aria-current="page"
+                            <a class="btn btn-outline-primary" aria-current="page"
                                 href="/login">
                                 ግባ
                             </a>
