@@ -21,7 +21,7 @@ class News extends BaseController
     public function new()
     {
         $category_Model = new NewsCategoryModel();
-        $data['news_categories'] = $category_Model->findAll();
+        $data['program_categories'] = $category_Model->findAll();
         return view('admin/news/new/index', $data);
     }
 
@@ -119,14 +119,14 @@ class News extends BaseController
     public function edit($id = null)
     {
         $model = new NewsModel();
-        $data['program_category'] = $model->find($id);
+        $categoryModel = new NewsCategoryModel();
+        $data['news_categories'] = $categoryModel->findAll();
+        $data['news'] = $model->find($id);
 
-        return view('admin/program_category/edit/index', $data);
+        return view('admin/news/edit/index', $data);
     }
 
-    /**
-     * Process the updating of a news category.
-     */
+
     public function update($id = null)
     {
         $model = new NewsModel();
@@ -149,6 +149,15 @@ class News extends BaseController
                     'is_unique' => 'This category title already exists. Please choose another.'
                 ]
             ],
+            'news_category_id' => [
+                'label' => 'News Category',
+                // This rule ensures the submitted ID actually exists in the 'news_categories' table.
+                'rules' => 'required|is_not_unique[news_categories.id]',
+                'errors' => [
+                    'required' => 'You must select a news category.',
+                    'is_not_unique' => 'The selected news category is not valid.'
+                ]
+            ],
             'description' => [
                 'label' => 'Description',
                 'rules' => 'permit_empty', // Simplified rule: min_length conflicts with permit_empty
@@ -168,11 +177,19 @@ class News extends BaseController
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
+        $dirtyHTML = $this->request->getPost('description');
 
+        $config = \HTMLPurifier_Config::createDefault();
+        // A safe set of allowed HTML tags and attributes
+        $config->set('HTML.Allowed', 'p,b,strong,i,em,ul,ol,li,a[href],br,h1,h2,h3,h4,h5,h6');
+
+        $purifier = new \HTMLPurifier($config);
+        $cleanHTML = $purifier->purify($dirtyHTML);
         // 4. Prepare the text data for update.
         $data = [
             'title' => $this->request->getPost('title'),
-            'description' => $this->request->getPost('description'),
+            'description' => $cleanHTML,
+            'news_category_id' => $this->request->getPost('news_category_id')
         ];
 
         // 5. Handle the optional file upload.
@@ -201,7 +218,7 @@ class News extends BaseController
         // The $data array will contain the new image filename ONLY if one was uploaded.
         if ($model->update($id, $data)) {
             // Redirect to the correct list page.
-            return redirect()->to('/admin/program_category')->with('message', 'Program category updated successfully.');
+            return redirect()->to('/admin/news/')->with('message', 'Program category updated successfully.');
         } else {
             return redirect()->back()->withInput()->with('errors', $model->errors());
         }
@@ -223,7 +240,7 @@ class News extends BaseController
 
 
         if ($model->delete($id)) {
-            return redirect()->to('/admin/news')->with('message', 'News category deleted successfully.');
+            return redirect()->to('/admin/news')->with('message', 'News deleted successfully.');
         } else {
             return redirect()->back()->with('errors', 'Failed to delete program category.');
         }

@@ -31,7 +31,7 @@
                 <?php endif; ?>
 
 
-                <form action="/admin/news_category/<?= $news_category['id']?>" method="post">
+                <form action="/admin/news_category/<?= $news_category['id'];?>" method="post">
                     <?= csrf_field() ?>
                     <div class="mb-4">
                         <input type="hidden" name="_method" value="PUT" />

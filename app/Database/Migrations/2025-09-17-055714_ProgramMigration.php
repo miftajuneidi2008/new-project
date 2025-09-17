@@ -4,9 +4,9 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class ProgramCategory extends Migration
+class ProgramMigration extends Migration
 {
-    public function up()
+   public function up()
     {
         $this->forge->addField([
             'id' => [
@@ -32,6 +32,11 @@ class ProgramCategory extends Migration
                 'type' => 'TEXT',
                 'null' => true,
             ],
+             'category_id' => [
+               'type'       => 'INT',
+                'constraint' => 11,
+                'unsigned'   => true,
+            ],
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
@@ -47,13 +52,15 @@ class ProgramCategory extends Migration
 
         // Add Foreign Key from 'user_id' to 'id' on the 'users' table
         $this->forge->addForeignKey('user_id', 'user', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('category_id', 'program_categories', 'id', 'CASCADE', 'CASCADE');
+
 
         // Create the table
-        $this->forge->createTable('program_categories');
+        $this->forge->createTable('program');
     }
 
     public function down()
     {
-        $this->forge->dropTable('program_categories');
+        $this->forge->dropTable('news');
     }
 }

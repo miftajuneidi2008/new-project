@@ -4,14 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class NewsCategoryModel extends Model
+class ProgramModel extends Model
 {
-  /**
+
+    /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'news_categories';
+    protected $table = 'program';
 
     /**
      * The primary key of the table.
@@ -27,6 +28,8 @@ class NewsCategoryModel extends Model
      */
     protected $allowedFields = [
         'user_id',
+        'photo',
+        'category_id',
         'title',
         'description'
     ];
@@ -59,4 +62,28 @@ class NewsCategoryModel extends Model
      */
     protected $updatedField = 'updated_at';
 
+
+        public function getNewsWithDetails()
+    {
+        // Start building a query from the 'news' table
+        $builder = $this->db->table($this->table);
+
+        // Define the columns you want to select
+        $builder->select('
+            program.*, 
+            program_categories.title as category_title, 
+            user.name as author_name
+        '); 
+
+        $builder->join('program_categories', 'program_categories.id = program.category_id', 'left');
+
+      
+        $builder->join('user', 'user.id = program.user_id', 'left');
+        
+        // Order the results by the newest first
+        $builder->orderBy('program.created_at', 'DESC');
+
+        // Execute the query and return the results
+        return $builder->get()->getResultArray();
+    }
 }

@@ -28,11 +28,15 @@
                 <?php endif; ?>
 
 
-                <form action="/admin/news/<?= $news['id'];?>" method="post" enctype="multipart/form-data">
-                    <?= csrf_field() ?>
+                <form action="/admin/news/<?= esc($news['id']);?>" method="post" enctype="multipart/form-data">
+                      <?= csrf_field() ?>
+                    <div class="mb-4">
+                        <input type="hidden" name="_method" value="PUT" />
+                        <input type="hidden" name="id" value="<?php echo $news['id'] ?>">
+                    </div>
                     <div class="mb-4">
                         <label for="title" class="form-label">የዜና ምድብ ርዕስ</label>
-                        <input type="title" class="form-control" name="title" id="title" aria-describedby="emailHelp"
+                        <input type="title" class="form-control" value="<?= esc($news['title']) ?>" name="title" id="title" aria-describedby="emailHelp"
                             placeholder="ፕሮግራም ምድብ ርዕስ">
                     </div>
 
@@ -45,14 +49,17 @@
                         <select class="form-select" name="news_category_id" id="news_category_id" aria-label="Default select example">
                             <option selected>የዜና ምድብ ይምረጡ</option>
                             <?php foreach ($news_categories as $news_category): ?>
-                                <option value="<?= $news_category['id'] ?>"><?= $news_category['title'] ?></option>
+                                 <option value="<?= esc($news_category['id']) ?>"
+                        <?= ($news_category['id'] == $news['category_id']) ? 'selected' : '' ?>>
+                        <?= esc($news_category['title']) ?>
+                    </option>
                             <?php endforeach ?>
                         </select>
                     </div>
 
                     <div class="mb-4">
                         <label for="description">የፕሮግራም ምድብ መግለጫ</label>
-                        <textarea class="form-control" name="description" id="description"></textarea>
+                        <textarea class="form-control" name="description" id="description"><?= esc($news['description']) ?></textarea>
 
                     </div>
                     <button type="submit" class="btn btn-primary">አስገባ</button>

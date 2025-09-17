@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+$routes->get('/', 'User::index');
 $routes->get('/login', 'Login::index');
 $routes->get('/login/gmailCallback', 'Login::gmailCallback');
 $routes->get('/login/logout', 'Login::logout');
@@ -23,4 +23,7 @@ $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
 
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
     $routes->resource('news', ['controller' => 'News']);
+});
+$routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
+    $routes->resource('program', ['controller' => 'Program']);
 });

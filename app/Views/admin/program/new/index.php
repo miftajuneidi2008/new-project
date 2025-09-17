@@ -4,7 +4,7 @@
 
     <div class="container mt-5">
 
-        <a href="/admin/news" class="btn btn-light mb-4">ተመለስ</a>
+        <a href="/admin/program" class="btn btn-light mb-4">ተመለስ</a>
         <!-- 2. Create a row. Use flexbox utilities to center the column inside it -->
         <div class="row">
 
@@ -28,7 +28,7 @@
                 <?php endif; ?>
 
 
-                <form action="/admin/news/<?= $news['id'];?>" method="post" enctype="multipart/form-data">
+                <form action="/admin/program/" method="post" enctype="multipart/form-data">
                     <?= csrf_field() ?>
                     <div class="mb-4">
                         <label for="title" class="form-label">የዜና ምድብ ርዕስ</label>
@@ -42,10 +42,10 @@
                     </div>
 
                     <div class="mb-4">
-                        <select class="form-select" name="news_category_id" id="news_category_id" aria-label="Default select example">
+                        <select class="form-select" name="program_category_id" id="program_category_id" aria-label="Default select example">
                             <option selected>የዜና ምድብ ይምረጡ</option>
-                            <?php foreach ($news_categories as $news_category): ?>
-                                <option value="<?= $news_category['id'] ?>"><?= $news_category['title'] ?></option>
+                            <?php foreach ($program_categories as $program_category): ?>
+                                <option value="<?= $program_category['id'] ?>"><?= $program_category['title'] ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>

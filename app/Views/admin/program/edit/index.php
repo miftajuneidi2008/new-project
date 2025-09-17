@@ -28,31 +28,38 @@
                 <?php endif; ?>
 
 
-                <form action="/admin/news/<?= $news['id'];?>" method="post" enctype="multipart/form-data">
-                    <?= csrf_field() ?>
+                <form action="/admin/program/<?= esc($program['id']);?>" method="post" enctype="multipart/form-data">
+                      <?= csrf_field() ?>
                     <div class="mb-4">
-                        <label for="title" class="form-label">የዜና ምድብ ርዕስ</label>
-                        <input type="title" class="form-control" name="title" id="title" aria-describedby="emailHelp"
+                        <input type="hidden" name="_method" value="PUT" />
+                        <input type="hidden" name="id" value="<?php echo $program['id'] ?>">
+                    </div>
+                    <div class="mb-4">
+                        <label for="title" class="form-label">የፕሮግራም ምድብ ርዕስ</label>
+                        <input type="title" class="form-control" value="<?= esc($program['title']) ?>" name="title" id="title" aria-describedby="emailHelp"
                             placeholder="ፕሮግራም ምድብ ርዕስ">
                     </div>
 
                     <div class="mb-4">
-                        <label for="image" class="form-label">የዜና ምስል</label>
+                        <label for="image" class="form-label">የፕሮግራም ምስል</label>
                         <input type="file" class="form-control" name="image" id="image" aria-describedby="emailHelp">
                     </div>
 
                     <div class="mb-4">
-                        <select class="form-select" name="news_category_id" id="news_category_id" aria-label="Default select example">
-                            <option selected>የዜና ምድብ ይምረጡ</option>
-                            <?php foreach ($news_categories as $news_category): ?>
-                                <option value="<?= $news_category['id'] ?>"><?= $news_category['title'] ?></option>
+                        <select class="form-select" name="program_category_id" id="program_category_id" aria-label="Default select example">
+                            <option selected>የፕሮግራም ምድብ ይምረጡ</option>
+                            <?php foreach ($program_categories as $program_category): ?>
+                                 <option value="<?= esc($program_category['id']) ?>"
+                        <?= ($program_category['id'] == $program['category_id']) ? 'selected' : '' ?>>
+                        <?= esc($program_category['title']) ?>
+                    </option>
                             <?php endforeach ?>
                         </select>
                     </div>
 
                     <div class="mb-4">
                         <label for="description">የፕሮግራም ምድብ መግለጫ</label>
-                        <textarea class="form-control" name="description" id="description"></textarea>
+                        <textarea class="form-control" name="description" id="description"><?= esc($program['description']) ?></textarea>
 
                     </div>
                     <button type="submit" class="btn btn-primary">አስገባ</button>

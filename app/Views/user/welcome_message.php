@@ -41,30 +41,30 @@
 
                     <ul class="navbar-nav ms-lg-auto p-4 p-lg-0">
                         <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="#"> ቅድመ ግፅ</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="#">News</a>
+                            <a class="nav-link active" aria-current="page" href="#">ዜና</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="#">Sport</a>
+                            <a class="nav-link active" aria-current="page" href="#">ስፖርት</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4 ">
-                            <a class="nav-link active" aria-current="page" href="#">Bussiness</a>
+                            <a class="nav-link active" aria-current="page" href="#">ቢዝነስ</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="#">Programs</a>
+                            <a class="nav-link active" aria-current="page" href="#">ፕሮግራም</a>
                         </li>
 
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
                             <a class="nav-link active btn btn-success px-3 text-white" aria-current="page" href="#"
-                                id="liveStreamButton">Live</a>
+                                id="liveStreamButton">ቀጥታ</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
                             <a class="nav-link active btn btn-primary text-white px-3" aria-current="page"
                                 href="/login">
-                                Login
+                                ግባ
                             </a>
                         </li>
                     </ul>
