@@ -152,3 +152,423 @@ body{
         .tag-business { background-color: #20c997; }
         .tag-sport { background-color: #d63384; }
 
+              .programmes-section {
+            background-color: white; /* Light grey background */
+        }
+
+        .section-title {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 600;
+        }
+
+        /* Custom styling for the Slick slider arrows */
+        .slick-arrow {
+            background-color: white !important;
+            border-radius: 50% !important;
+            width: 45px !important;
+            height: 45px !important;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Position the arrows */
+        .slick-prev { left: -20px !important; }
+        .slick-next { right: -20px !important; }
+
+        .slick-arrow::before {
+            font-family: 'bootstrap-icons' !important; /* Use Bootstrap Icons */
+            font-size: 24px !important;
+            color: #333 !important; /* Arrow color */
+            line-height: 1.7 !important; /* Center the icon */
+        }
+        
+        /* Set the icon for each arrow */
+        .slick-prev::before { content: "\f284"; } /* Bootstrap chevron-left icon */
+        .slick-next::before { content: "\f285"; } /* Bootstrap chevron-right icon */
+
+        /* Style for each individual programme card */
+        .programme-item {
+            /* Add some margin between items */
+            margin: 0 10px;
+            height: 150px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden; /* Clips the image and overlay to the rounded corners */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .programme-item:hover {
+            transform: translateY(-5px); /* Add a subtle hover effect */
+        }
+
+        .programme-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Dark overlay to make the text readable */
+        .programme-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .programme-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+:root {
+            --bright-orange: #ff6600;
+        }
+
+        .footer-enhanced {
+            background-color: #1c1c1c; /* A slightly softer black */
+            color: rgba(255, 255, 255, 0.7);
+            font-family: sans-serif;
+        }
+
+        .footer-enhanced h5 {
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .footer-enhanced p {
+            line-height: 1.7;
+        }
+
+        /* Styling for the links in the footer */
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .footer-links a:hover {
+            color: var(--bright-orange);
+        }
+        
+        /* Styling for the recent posts section */
+        .recent-post a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            display: block;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .recent-post a:hover {
+            color: var(--bright-orange);
+        }
+
+        .recent-post small {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Modern, circular social media icons */
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 50%;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--bright-orange);
+            transform: translateY(-2px);
+        }
+
+        /* Styling for the subscribe form */
+        .form-control-dark {
+            background-color: #333;
+            border-color: #555;
+            color: #fff;
+        }
+        .form-control-dark::placeholder {
+            color: #aaa;
+        }
+        .form-control-dark:focus {
+            background-color: #333;
+            border-color: var(--bright-orange);
+            color: #fff;
+            box-shadow: 0 0 0 0.25rem rgba(255, 102, 0, 0.25);
+        }
+
+        .btn-subscribe {
+            background-color: var(--bright-orange);
+            border-color: var(--bright-orange);
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .btn-subscribe:hover {
+            background-color: #e65c00;
+            border-color: #e65c00;
+            color: #fff;
+        }
+
+        .privacy-link {
+            color: var(--bright-orange);
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            background-color: #000;
+            color: rgba(255, 255, 255, 0.5);
+        }
+ :root {
+            --primary-accent-color: #0056b3; /* A deep, professional blue */
+        }
+
+        body {
+            background-color: #f9fafb; /* A soft, off-white background */
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        /* --- Page Header --- */
+        .page-header h1 {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+        }
+
+        /* --- Left Column: News Card Styling --- */
+        .news-card {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Important for the image zoom effect */
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-card-img-container {
+            height: 100%;
+        }
+
+        .news-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .news-card:hover .news-card-img {
+            transform: scale(1.05); /* Subtle zoom on hover */
+        }
+
+        .category-tag {
+            background-color: var(--primary-accent-color);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .news-title {
+            font-family: 'Merriweather', serif;
+            font-size: 1.3rem;
+            margin-top: 0.5rem;
+        }
+        .news-title a {
+            color: #212529;
+            text-decoration: none;
+            background-image: linear-gradient(var(--primary-accent-color), var(--primary-accent-color));
+            background-size: 0% 2px;
+            background-repeat: no-repeat;
+            background-position: left bottom;
+            transition: background-size 0.3s ease;
+        }
+        .news-title a:hover {
+            background-size: 100% 2px;
+        }
+
+        .news-meta {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .news-meta i {
+            margin-right: 5px;
+        }
+
+        .news-description {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* --- Right Column: Sticky Sidebar Styling --- */
+        .sticky-sidebar {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 2rem; /* Add margin from the top */
+        }
+
+        .popular-news-widget {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+        }
+        .popular-news-widget h4{
+            font-family: 'Merriweather', serif;
+        }
+
+        .popular-news-list {
+            list-style-type: none;
+            padding-left: 0;
+            counter-reset: popular-counter;
+        }
+        .popular-news-list li {
+            counter-increment: popular-counter;
+            display: flex;
+            align-items: flex-start;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .popular-news-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .popular-news-list li::before {
+            content: "0" counter(popular-counter);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-accent-color);
+            opacity: 0.5;
+            margin-right: 1.25rem;
+            transform: translateY(-3px);
+        }
+
+        .popular-news-list a {
+            font-weight: 500;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .popular-news-list a:hover {
+            color: var(--primary-accent-color);
+        }
+
+         .page-title, .section-title, .card-title {
+             font-family: 'Oswald', sans-serif;
+        }
+
+        .page-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        .section-title {
+            font-weight: 700;
+            font-size: 1.75rem;
+            text-transform: uppercase;
+            color: #495057;
+        }
+
+        /* --- Small Banner --- */
+        .small-banner {
+            height: 300px;
+            background: url('https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=2070&auto=format&fit=crop') center center/cover no-repeat;
+            color: white;
+        }
+
+        /* --- Main Article Card --- */
+        .article-card-horizontal .article-img {
+            width: 100%;
+            height: 100%;
+            min-height: 200px; /* Ensure a minimum height */
+            object-fit: cover;
+        }
+        
+        .article-card-horizontal .card-title a {
+            color: #212529;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .article-card-horizontal .card-title a:hover {
+            color: #0d6efd;
+            text-decoration: underline;
+        }
+
+        /* --- STICKY SIDEBAR --- */
+        .sidebar-sticky {
+            /* This tells Bootstrap's sticky-top where to stop */
+            top: 2rem; 
+            z-index: -1;
+        }
+
+        .small-banner {
+  position: relative; /* Parent must be relative */
+  height: 300px;
+  overflow: hidden; /* Hide anything that goes outside the rounded corners */
+}
+
+/* The background image: fills the entire container */
+.banner-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1; /* Layer 1 */
+}
+
+/* The dark overlay: sits on top of the image */
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 2; /* Layer 2 */
+}
+
+/* The text container: sits on top of everything */
+.banner-text {
+  position: relative; /* or position: absolute */
+  z-index: 3; /* Layer 3 */
+  text-align: center;
+}
+
+.page-title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+

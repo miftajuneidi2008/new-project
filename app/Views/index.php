@@ -9,13 +9,15 @@
         <div class="col-lg-7 h-100" role="button">
             <!-- The video-item will fill the height of this column -->
             <div class="video-item featured-video">
-                <img src="<?= base_url('images/' . $news[0]['photo']) ?>" width="30px" height="30px"
-                    alt="<?= esc($news[0]['title']) ?>">
-                <div class="video-tag"><?= esc($news[0]['category_title']) ?></div>
-                <div class="video-overlay">
-                    <h3 class="video-title"><?= esc($news[0]['title']) ?></h3>
-                    <p class="video-date"><?= (new Time($news[0]['created_at']))->format('M j, Y') ?></p>
-                </div>
+                <a href="/news/<?= esc($news[0]['id']) ?>">
+                    <img src="<?= base_url('images/' . $news[0]['photo']) ?>" width="30px" height="30px"
+                        alt="<?= esc($news[0]['title']) ?>">
+                    <div class="video-tag"><?= esc($news[0]['category_title']) ?></div>
+                    <div class="video-overlay">
+                        <h3 class="video-title"><?= esc($news[0]['title']) ?></h3>
+                        <p class="video-date"><?= (new Time($news[0]['created_at']))->format('M j, Y') ?></p>
+                    </div>
+                </a>
             </div>
         </div>
 
@@ -25,120 +27,200 @@
 
             <!-- Video 1: 'flex-grow-1' makes it take up available space -->
             <div class="video-item flex-grow-1" role="button" role="button">
-                <img src="<?= base_url('images/' . $news[1]['photo']) ?>" width="30px" height="30px"
-                    alt="<?= esc($news[1]['title']) ?>">
-                <div class="video-tag"><?= esc($news[1]['category_title']) ?></div>
-                <div class="video-overlay">
-                    <h5 class="video-title"><?= esc($news[1]['title']) ?></h5>
-                    <p class="video-date"><?= (new Time($news[1]['created_at']))->format('M j, Y') ?></p>
-                </div>
+                <a href="/news/<?= esc($news[1]['id']) ?>">
+                    <img src="<?= base_url('images/' . $news[1]['photo']) ?>" width="30px" height="30px"
+                        alt="<?= esc($news[1]['title']) ?>">
+
+                    <div class="video-tag"><?= esc($news[1]['category_title']) ?></div>
+                    <div class="video-overlay">
+                        <h5 class="video-title"><?= esc($news[1]['title']) ?></h5>
+                        <p class="video-date"><?= (new Time($news[1]['created_at']))->format('M j, Y') ?></p>
+                    </div>
+                </a>
             </div>
 
             <!-- Video 2: 'flex-grow-1' makes it take up available space -->
             <div class="video-item flex-grow-1" role="button">
-                <img src="<?= base_url('images/' . $news[2]['photo']) ?>" width="30px" height="30px"
-                    alt="<?= esc($news[2]['title']) ?>">
-                <div class="video-tag"><?= esc($news[2]['category_title']) ?></div>
-                <div class="video-overlay">
-                    <h5 class="video-title"><?= esc($news[2]['title']) ?></h5>
-                    <p class="video-date"><?= (new Time($news[2]['created_at']))->format('M j, Y') ?></p>
-                </div>
+                <a href="/news/<?= esc($news[2]['id']) ?>">
+                    <img src="<?= base_url('images/' . $news[2]['photo']) ?>" width="30px" height="30px"
+                        alt="<?= esc($news[2]['title']) ?>">
+                    <div class="video-tag"><?= esc($news[2]['category_title']) ?></div>
+                    <div class="video-overlay">
+                        <h5 class="video-title"><?= esc($news[2]['title']) ?></h5>
+                        <p class="video-date"><?= (new Time($news[2]['created_at']))->format('M j, Y') ?></p>
+                    </div>
+                </a>
             </div>
 
         </div>
     </div>
 
     <div class="mt-4">
-        <h3 class="section-title">Recent News</h3>
+        <h3 class="section-title">
+            የቅርብ ጊዜ ዜናዎች</h3>
 
         <!-- Bootstrap grid with 2 columns on medium screens and up -->
         <div class="row gy-4">
 
             <!-- News Item 1 -->
-            <div class="col-md-6">
-                <div class="news-item d-flex align-items-center">
-                    <img src="https://i.imgur.com/kSwo6k4.jpeg" alt="News Image">
-                    <div class="ms-3">
-                        <span class="category-tag tag-siltie">Siltie</span>
-                        <a href="#" class="news-title">በኢትዮጵያ የተገነባው ግድብ ከ2 ሺህ 8 ቢሊዮን በላይ ወጪ ተደርጎበታል</a>
-                        <p class="news-date mb-0">Oct 18, 2024</p>
+            <?php if (!empty($siltie)): ?>
+                <div class="col-md-6">
+                    <div class="news-item d-flex align-items-center">
+                        <img src="<?= base_url('images/' . $siltie['photo']) ?>" alt="<?= esc($siltie['title']) ?>">
+                        <div class="ms-3">
+                            <span class="category-tag tag-siltie"><?= esc($siltie['category_title']) ?></span>
+                            <a href="#" class="news-title"><?= esc($siltie['title']) ?></a>
+                            <p class="news-date mb-0"><?= (new Time($siltie['created_at']))->format('M j, Y') ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+            <?php endif; ?>
+
 
             <!-- News Item 2 -->
-            <div class="col-md-6">
-                <div class="news-item d-flex align-items-center">
-                    <img src="https://i.imgur.com/gK92Bv2.jpeg" alt="News Image">
-                    <div class="ms-3">
-                        <span class="category-tag tag-central-ethiopia">Central Ethiopia</span>
-                        <a href="#" class="news-title">በኢትዮጵያ የተገነባው ግድብ ከ2 ሺህ 8 ቢሊዮን በላይ ወጪ ተደርጎበታል</a>
-                        <p class="news-date mb-0">Oct 18, 2024</p>
+            <?php if (!empty($centeral_ethiopia)): ?>
+                <div class="col-md-6">
+                    <div class="news-item d-flex align-items-center">
+                        <img src="<?= base_url('images/' . $centeral_ethiopia['photo']) ?>"
+                            alt="<?= esc($centeral_ethiopia['title']) ?>">
+                        <div class="ms-3">
+                            <span class="category-tag tag-siltie"><?= esc($centeral_ethiopia['category_title']) ?></span>
+                            <a href="#" class="news-title"><?= esc($centeral_ethiopia['title']) ?></a>
+                            <p class="news-date mb-0"><?= (new Time($centeral_ethiopia['created_at']))->format('M j, Y') ?>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
             <!-- News Item 3 -->
-            <div class="col-md-6">
-                <div class="news-item d-flex align-items-center">
-                    <img src="https://i.imgur.com/gK92Bv2.jpeg" alt="News Image">
-                    <div class="ms-3">
-                        <span class="category-tag tag-ethiopia">Ethiopia</span>
-                        <a href="#" class="news-title">በኢትዮጵያ የተገነባው ግድብ ከ2 ሺህ 8 ቢሊዮን በላይ ወጪ ተደርጎበታል</a>
-                        <p class="news-date mb-0">Oct 18, 2024</p>
+            <?php if (!empty($ethiopia)): ?>
+                <div class="col-md-6">
+                    <div class="news-item d-flex align-items-center">
+                        <img src="<?= base_url('images/' . $ethiopia['photo']) ?>" alt="<?= esc($ethiopia['title']) ?>">
+                        <div class="ms-3">
+                            <span class="category-tag tag-siltie"><?= esc($ethiopia['category_title']) ?></span>
+                            <a href="#" class="news-title"><?= esc($ethiopia['title']) ?></a>
+                            <p class="news-date mb-0"><?= (new Time($ethiopia['created_at']))->format('M j, Y') ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
             <!-- News Item 4 -->
-            <div class="col-md-6">
-                <div class="news-item d-flex align-items-center">
-                    <img src="https://i.imgur.com/gK92Bv2.jpeg" alt="News Image">
-                    <div class="ms-3">
-                        <span class="category-tag tag-africa">Africa</span>
-                        <a href="#" class="news-title">በኢትዮጵያ የተገነባው ግድብ ከ2 ሺህ 8 ቢሊዮን በላይ ወጪ ተደርጎበታል</a>
-                        <p class="news-date mb-0">Oct 18, 2024</p>
+            <?php if (!empty($africa)): ?>
+                <div class="col-md-6">
+                    <div class="news-item d-flex align-items-center">
+                        <img src="<?= base_url('images/' . $africa['photo']) ?>" alt="<?= esc($africa['title']) ?>">
+                        <div class="ms-3">
+                            <span class="category-tag tag-siltie"><?= esc($africa['category_title']) ?></span>
+                            <a href="#" class="news-title"><?= esc($africa['title']) ?></a>
+                            <p class="news-date mb-0"><?= (new Time($africa['created_at']))->format('M j, Y') ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
             <!-- News Item 5 -->
-            <div class="col-md-6">
-                <div class="news-item d-flex align-items-center">
-                    <img src="https://i.imgur.com/gK92Bv2.jpeg" alt="News Image">
-                    <div class="ms-3">
-                        <span class="category-tag tag-world">World</span>
-                        <a href="#" class="news-title">በኢትዮጵያ የተገነባው ግድብ ከ2 ሺህ 8 ቢሊዮን በላይ ወጪ ተደርጎበታል</a>
-                        <p class="news-date mb-0">Oct 18, 2024</p>
+            <?php if (!empty($world)): ?>
+                <div class="col-md-6">
+                    <div class="news-item d-flex align-items-center">
+                        <img src="<?= base_url('images/' . $world['photo']) ?>" alt="<?= esc($world['title']) ?>">
+                        <div class="ms-3">
+                            <span class="category-tag tag-siltie"><?= esc($world['category_title']) ?></span>
+                            <a href="#" class="news-title"><?= esc($world['title']) ?></a>
+                            <p class="news-date mb-0"><?= (new Time($world['created_at']))->format('M j, Y') ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
+            <?php endif; ?>
+
             <!-- News Item 6 -->
-            <div class="col-md-6">
-                <div class="news-item d-flex align-items-center">
-                    <img src="https://i.imgur.com/gK92Bv2.jpeg" alt="News Image">
-                    <div class="ms-3">
-                        <span class="category-tag tag-business">Bussiness</span>
-                        <a href="#" class="news-title">በኢትዮጵያ የተገነባው ግድብ ከ2 ሺህ 8 ቢሊዮን በላይ ወጪ ተደርጎበታል</a>
-                        <p class="news-date mb-0">Oct 18, 2024</p>
+            <?php if (!empty($sport)): ?>
+                <div class="col-md-6">
+                    <div class="news-item d-flex align-items-center">
+                        <img src="<?= base_url('images/' . $sport['photo']) ?>" alt="<?= esc($sport['title']) ?>">
+                        <div class="ms-3">
+                            <span class="category-tag tag-siltie"><?= esc($sport['category_title']) ?></span>
+                            <a href="#" class="news-title"><?= esc($sport['title']) ?></a>
+                            <p class="news-date mb-0"><?= (new Time($sport['created_at']))->format('M j, Y') ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
             <!-- News Item 7 -->
-            <div class="col-md-6">
-                <div class="news-item d-flex align-items-center">
-                    <img src="https://i.imgur.com/gK92Bv2.jpeg" alt="News Image">
-                    <div class="ms-3">
-                        <span class="category-tag tag-sport">Sport</span>
-                        <a href="#" class="news-title">በኢትዮጵያ የተገነባው ግድብ ከ2 ሺህ 8 ቢሊዮን በላይ ወጪ ተደርጎበታል</a>
-                        <p class="news-date mb-0">Oct 18, 2024</p>
+            <?php if (!empty($bussiness)): ?>
+                <div class="col-md-6">
+                    <div class="news-item d-flex align-items-center">
+                        <img src="<?= base_url('images/' . $bussiness['photo']) ?>" alt="<?= esc($bussiness['title']) ?>">
+                        <div class="ms-3">
+                            <span class="category-tag tag-siltie"><?= esc($bussiness['category_title']) ?></span>
+                            <a href="#" class="news-title"><?= esc($bussiness['title']) ?></a>
+                            <p class="news-date mb-0"><?= (new Time($bussiness['created_at']))->format('M j, Y') ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
         </div>
     </div>
+
+    <section class="programmes-section py-5">
+        <div class="container">
+            <h2 class="section-title mb-4">ፕሮግራሞች</h2>
+
+            <!-- The Slick Carousel container -->
+            <div class="programme-slider">
+                <!-- Item 1 -->
+                <div class="programme-item">
+                    <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Technology">
+                    <div class="programme-overlay">
+                        <h4 class="programme-title">ቴክኖሎጂ</h4>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="programme-item">
+                    <img src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg" alt="Science">
+                    <div class="programme-overlay">
+                        <h4 class="programme-title">ሳይንስ</h4>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="programme-item">
+                    <img src="https://images.pexels.com/photos/1111312/pexels-photo-1111312.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Culture">
+                    <div class="programme-overlay">
+                        <h4 class="programme-title">ባህል</h4>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="programme-item">
+                    <img src="https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg" alt="Art">
+                    <div class="programme-overlay">
+                        <h4 class="programme-title">ስነ ጥበብ</h4>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="programme-item">
+                    <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="Business">
+                    <div class="programme-overlay">
+                        <h4 class="programme-title">ቢዝነስ</h4>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="programme-item">
+                    <img src="https://images.pexels.com/photos/207940/pexels-photo-207940.jpeg?auto=compress&cs=tinysrgb&w=600"
+                        alt="History">
+                    <div class="programme-overlay">
+                        <h4 class="programme-title">ታሪክ</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 <?= $this->endSection() ?>

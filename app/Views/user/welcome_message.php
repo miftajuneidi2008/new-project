@@ -6,12 +6,24 @@
     <title>Siltite fm</title>
     <meta name="description" content="The small framework with powerful features">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+      <?= $this->renderSection('meta') ?>
+
     <link rel="shortcut icon" type="image/png" href="/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
         integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 
     <!-- STYLES -->
 
@@ -41,36 +53,32 @@
 
                     <ul class="navbar-nav ms-lg-auto p-4 p-lg-0">
                         <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="#"> ቅድመ ግፅ</a>
+                            <a class="nav-link active" aria-current="page" href="/"> ቅድመ ግፅ</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="#">ዜና</a>
+                            <a class="nav-link active" aria-current="page" href="/news">ዜና</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="#">ስፖርት</a>
+                            <a class="nav-link active" aria-current="page" href="sport">ስፖርት</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4 ">
-                            <a class="nav-link active" aria-current="page" href="#">ቢዝነስ</a>
+                            <a class="nav-link active" aria-current="page" href="business">ቢዝነስ</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="#">ፕሮግራም</a>
+                            <a class="nav-link active" aria-current="page" href="program">ፕሮግራም</a>
                         </li>
 
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="btn btn-outline-danger" aria-current="page" href="#"
-                                id="liveStreamButton">ቀጥታ</a>
+                            <a class="btn btn-outline-danger" aria-current="page" href="#" id="liveStreamButton">ቀጥታ</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="btn btn-outline-primary" aria-current="page"
-                                href="/login">
+                            <a class="btn btn-outline-primary" aria-current="page" href="/login">
                                 ግባ
                             </a>
                         </li>
                     </ul>
-                    <audio id="liveStreamAudio"
-                        src="https://stream.zeno.fm/dfroy2it9yntv?an-uid=6928502853161380572&dot-uid=0c63220400ff218f324fb0f1&amb-uid=7372208072735124659&dbm-uid=CAESEFr0pgbP0EgQ12QbO6Mq4l0&cto-uid=f6c70d17-0849-49f0-97d4-a5ac03b5e66e-68ad8cfa-4554&bsw-uid=eb514ffd-5501-4002-b137-e7cee7ba4cd4&dyn-uid=5056197159886288854&ttd-uid=0093d478-b587-4fc5-983b-915a5f2dae90&aw_0_req_lsid=2c697dacb9b31c8c1d75f02f9d5f0410"
-                        preload="none"></audio>
+              
 
 
                 </div>
@@ -80,90 +88,121 @@
 
 
     <section class="container-fluid">
-    <?= $this->renderSection('contents') ?>
+        <?= $this->renderSection('contents') ?>
     </section>
     <!-- -->
+
+    <footer class="footer-enhanced pt-5">
+        <div class="container text-left">
+            <div class="row gy-4">
+
+                <!-- Column 1: About Us -->
+                <div class="col-lg-3 col-md-6">
+                    <h5>ስለ እኛ</h5>
+                    <p>OBN Website is a part of Oromia Broadcasting Network (OBN), producing news, documentary and
+                        programs in Afaan Oromoo language to reach our audiences in all over the world.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-telegram"></i></a>
+                        <a href="#"><i class="bi bi-tiktok"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Column 2: OBN Links -->
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h5>ስልጤ ፍም</h5>
+                    <a href="#">Waa'ee OBN</a>
+                    <a href="#">Teessoo</a>
+                    <a href="#">Ergama</a>
+                    <a href="#">Mul'ata</a>
+                    <a href="#">Duudhaa</a>
+                </div>
+
+                <!-- Column 3: Recent Posts -->
+                <div class="col-lg-4 col-md-6">
+                    <h5>ብዙህ የተነበቡ ዜናዎች</h5>
+                    <div class="recent-post mb-3">
+                        <a href="#">Barataa Qormaata Biyyaalessaa Kutaa 12ffaan 600 keessaa qabxii 9 qofa dhabeen wal
+                            baraa.</a>
+                        <small class="d-block mt-1">ARTICLES · September 15, 2025</small>
+                    </div>
+                    <div class="recent-post">
+                        <a href="#">Bara 2017 oomishtummaan aannanii harka 172'n guddate jedhe, Biiroon Qonnaa
+                            Oromiyaa</a>
+                        <small class="d-block mt-1">ODUU · September 8, 2025</small>
+                    </div>
+                </div>
+
+                <!-- Column 4: Subscribe Form -->
+                <div class="col-lg-3 col-md-6">
+                    <h5>Subscribe</h5>
+                    <p>Get the latest news and updates right in your inbox.</p>
+                    <form>
+                        <div class="mb-3">
+                            <input type="email" class="form-control form-control-dark" placeholder="Email address">
+                        </div>
+                        <button type="submit" class="btn btn-subscribe w-100 py-2">I WANT IN <i
+                                class="bi bi-arrow-right"></i></button>
+                    </form>
+                    <div class="form-check mt-3">
+                        <input class="form-check-input" type="checkbox" value="" id="privacyCheck">
+                        <label class="form-check-label small" for="privacyCheck">
+                            I've read and accept the <a href="#" class="privacy-link">Privacy Policy.</a>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom Footer Bar -->
+        <div class="footer-bottom text-center mt-5 py-3">
+            <p class="mb-0 small">&copy; 2025 OBN Sagalee Ummataa. All Rights Reserved.</p>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 
-            document.addEventListener('DOMContentLoaded', function () {
-                const liveStreamButton = document.getElementById('liveStreamButton');
-                const liveStreamAudio = document.getElementById('liveStreamAudio');
-                const playPauseIcon = document.getElementById('playPauseIcon');
-                const playPauseText = document.getElementById('playPauseText'); // Get the text span
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Slick Carousel JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-                let isPlaying = false; // Initial state: Not playing
-
-                liveStreamButton.addEventListener('click', function (event) {
-                    event.preventDefault(); // Prevent default link behavior
-
-                    if (isPlaying) {
-                        // If currently playing, pause it
-                        liveStreamAudio.pause();
-                        playPauseIcon.classList.remove('bi-pause-fill');
-                        playPauseIcon.classList.add('bi-play-fill');
-                        playPauseText.textContent = 'Listen'; // Change text to Listen
-                        isPlaying = false;
-                    } else {
-                        // If currently paused or stopped, play it
-                        // Attempt to play the audio
-                        liveStreamAudio.play()
-                            .then(() => {
-                                // Playback started successfully
-                                playPauseIcon.classList.remove('bi-play-fill');
-                                playPauseIcon.classList.add('bi-pause-fill');
-                                playPauseText.textContent = 'Pause'; // Change text to Pause
-                                isPlaying = true;
-                            })
-                            .catch(error => {
-                                // Autoplay was prevented or other error occurred
-                                console.error("Error playing audio:", error);
-                                // Provide user feedback
-                                alert("Could not play the live stream. Your browser might require user interaction to start audio.");
-                                // Reset UI to 'Listen' state if playback failed
-                                playPauseIcon.classList.remove('bi-pause-fill');
-                                playPauseIcon.classList.add('bi-play-fill');
-                                playPauseText.textContent = 'Listen';
-                                isPlaying = false;
-                            });
+    <!-- Script to initialize the Slick slider -->
+    <script>
+        $(document).ready(function () {
+            $('.programme-slider').slick({
+                dots: false,         // Hide the dots at the bottom
+                infinite: false,     // Don't loop the slider
+                speed: 500,          // Animation speed
+                slidesToShow: 4,     // Number of items to show at once
+                slidesToScroll: 1,   // Number of items to scroll at a time
+                responsive: [
+                    {
+                        breakpoint: 992, // On tablets
+                        settings: {
+                            slidesToShow: 3
+                        }
+                    },
+                    {
+                        breakpoint: 768, // On mobile
+                        settings: {
+                            slidesToShow: 2
+                        }
+                    },
+                    {
+                        breakpoint: 576, // On small mobile
+                        settings: {
+                            slidesToShow: 1
+                        }
                     }
-                });
-
-                // Optional: Event listener for when the audio actually pauses (e.g., if network drops)
-                liveStreamAudio.addEventListener('pause', function () {
-                    if (isPlaying) { // Only update if it was actually playing and paused unexpectedly
-                        isPlaying = false;
-                        playPauseIcon.classList.remove('bi-pause-fill');
-                        playPauseIcon.classList.add('bi-play-fill');
-                        playPauseText.textContent = 'Listen';
-                    }
-                });
-
-                // Optional: Event listener for when the audio actually plays (e.g., after loading)
-                liveStreamAudio.addEventListener('play', function () {
-                    // This can be useful for initial state or if some other script plays it
-                    if (!isPlaying) { // Only update if it was not already marked as playing
-                        isPlaying = true;
-                        playPauseIcon.classList.remove('bi-play-fill');
-                        playPauseIcon.classList.add('bi-pause-fill');
-                        playPauseText.textContent = 'Pause';
-                    }
-                });
-
-                // Optional: Handle errors during playback (e.g., stream unavailable)
-                liveStreamAudio.addEventListener('error', function () {
-                    console.error("Audio error occurred. Check stream URL or network connection.");
-                    alert("An error occurred while playing the live stream. It might be temporarily unavailable. Please try again later.");
-                    isPlaying = false;
-                    playPauseIcon.classList.remove('bi-pause-fill');
-                    playPauseIcon.classList.add('bi-play-fill');
-                    playPauseText.textContent = 'Listen';
-                });
+                ]
             });
-
-
-
-        </script>
+        });
+    </script>
 
 </body>
 
