@@ -69,7 +69,7 @@
                         <img src="<?= base_url('images/' . $siltie['photo']) ?>" alt="<?= esc($siltie['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($siltie['category_title']) ?></span>
-                            <a href="#" class="news-title"><?= esc($siltie['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($siltie['id'])) ?>" class="news-title"><?= esc($siltie['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($siltie['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                             alt="<?= esc($centeral_ethiopia['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($centeral_ethiopia['category_title']) ?></span>
-                            <a href="#" class="news-title"><?= esc($centeral_ethiopia['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($centeral_ethiopia['id'])) ?>" class="news-title"><?= esc($centeral_ethiopia['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($centeral_ethiopia['created_at']))->format('M j, Y') ?>
                             </p>
                         </div>
@@ -101,7 +101,7 @@
                         <img src="<?= base_url('images/' . $ethiopia['photo']) ?>" alt="<?= esc($ethiopia['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($ethiopia['category_title']) ?></span>
-                            <a href="#" class="news-title"><?= esc($ethiopia['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($ethiopia['id'])) ?>" class="news-title"><?= esc($ethiopia['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($ethiopia['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                         <img src="<?= base_url('images/' . $africa['photo']) ?>" alt="<?= esc($africa['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($africa['category_title']) ?></span>
-                            <a href="#" class="news-title"><?= esc($africa['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($africa['id'])) ?>" class="news-title"><?= esc($africa['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($africa['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                         <img src="<?= base_url('images/' . $world['photo']) ?>" alt="<?= esc($world['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($world['category_title']) ?></span>
-                            <a href="#" class="news-title"><?= esc($world['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($world['id'])) ?>" class="news-title"><?= esc($world['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($world['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                         <img src="<?= base_url('images/' . $sport['photo']) ?>" alt="<?= esc($sport['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($sport['category_title']) ?></span>
-                            <a href="#" class="news-title"><?= esc($sport['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($sport['id'])) ?>" class="news-title"><?= esc($sport['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($sport['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -157,7 +157,7 @@
                         <img src="<?= base_url('images/' . $bussiness['photo']) ?>" alt="<?= esc($bussiness['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($bussiness['category_title']) ?></span>
-                            <a href="#" class="news-title"><?= esc($bussiness['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($bussiness['id'])) ?>" class="news-title"><?= esc($bussiness['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($bussiness['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>

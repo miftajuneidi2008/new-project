@@ -7,7 +7,7 @@
     <meta name="description" content="The small framework with powerful features">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      <?= $this->renderSection('meta') ?>
+    <?= $this->renderSection('meta') ?>
 
     <link rel="shortcut icon" type="image/png" href="/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -28,6 +28,13 @@
     <!-- STYLES -->
 
     <link rel="stylesheet" href="/style.css">
+    <style>
+        .navbar .nav-item .nav-link.active {
+            color: #e65c00 !important;
+            border-bottom: 3px solid #e65c00;
+            padding-bottom: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,32 +60,45 @@
 
                     <ul class="navbar-nav ms-lg-auto p-4 p-lg-0">
                         <li class="nav-item px-3 px-lg-0 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="/"> ቅድመ ግፅ</a>
+                            <a class="nav-link " aria-current="page" href="/"> ቅድመ ግፅ</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="/news">ዜና</a>
+                            <a class="nav-link " aria-current="page" href="/news">ዜና</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="sport">ስፖርት</a>
+                            <a class="nav-link " aria-current="page" href="/sport">ስፖርት</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4 ">
-                            <a class="nav-link active" aria-current="page" href="business">ቢዝነስ</a>
+                            <a class="nav-link " aria-current="page" href="/business">ቢዝነስ</a>
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="nav-link active" aria-current="page" href="program">ፕሮግራም</a>
+                            <a class="nav-link" aria-current="page" href="/program">ፕሮግራም</a>
                         </li>
 
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
                             <a class="btn btn-outline-danger" aria-current="page" href="#" id="liveStreamButton">ቀጥታ</a>
                         </li>
-                        <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="btn btn-outline-primary" aria-current="page" href="/login">
-                                ግባ
-                            </a>
-                        </li>
+                        <?php if (session()->get('isLoggedIn')): ?>
+                            <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
+                                <a class="btn btn-outline-primary" aria-current="page" href="<?= site_url('logout') ?>">
+                                    ዉጣ
+                                </a>
+                            </li>
+
+                        <?php else: ?>
+
+                            <!-- User is not logged in, show a message -->
+                            <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
+                                <a class="btn btn-outline-primary" aria-current="page" href="/login">
+                                    ግባ
+                                </a>
+                            </li>
+
+
+                        <?php endif; ?>
                     </ul>
-              
+
 
 
                 </div>
@@ -203,6 +223,24 @@
             });
         });
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the current page's path
+        const currentPage = window.location.pathname;
+
+        // Get all the navigation links
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        // Loop through each link
+        navLinks.forEach(link => {
+            // If the link's href matches the current page
+            if (link.getAttribute('href') === currentPage) {
+                // Add the 'active' class to it
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
 
 </body>
 

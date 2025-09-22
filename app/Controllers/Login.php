@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\User;
 class Login extends BaseController
 {
@@ -74,6 +75,7 @@ class Login extends BaseController
                 }
             } else {
                 // New user, register them
+           
                 $newUser = [
                     'email' => $email,
                     'name'  => $name,
@@ -99,9 +101,14 @@ class Login extends BaseController
         }
     }
 
+    public function news_login($id=null){
+        
+    }
+
     public function logout()
     {
         $this->session->destroy();
         return redirect()->to('/login')->with('success', 'You have been logged out.');
     }
+
 }

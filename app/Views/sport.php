@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-md-8 d-flex flex-column">
                                 <div class="card-body">
-                                    <h5 class="card-title fs-4"><a href="#"><?= esc($sport_data['title']) ?></a></h5>
+                                    <h5 class="card-title fs-4"><a href="/news/<?=esc($sport_data['id'])?>"><?= esc($sport_data['title']) ?></a></h5>
                                     <p class="card-text text-secondary"><?= $summary ?></p>
                                     <p class="card-text"><small
                                             class="text-muted"><?= (new Time($sport_data['created_at']))->format('M j, Y') ?></small>

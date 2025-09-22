@@ -83,10 +83,91 @@ $ogUrl = current_url(true);
             </div>
 
             <hr class="my-5">
+            <?php
+            // Use the session() helper to check if the 'isLoggedIn' key exists and is true
+            if (session()->get('isLoggedIn')): ?>
+                <div class="my-2">
+                    <?php if (session()->getFlashdata('errors')): ?>
+                        <div class="alert alert-danger">
+                            <ul>
+                                <?php foreach (session()->getFlashdata('errors') as $error): ?>
+                                    <li><?= esc($error) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
 
-            <a href="<?= site_url('news') ?>" class="btn btn-primary my-2"><i class="bi bi-arrow-left"></i> Back to News
-                List</a>
+                    <?php if (session()->getFlashdata('message')): ?>
+                        <div class="alert alert-success">
+                            <?= session()->getFlashdata('message') ?>
+                        </div>
+                    <?php endif; ?>
+                    <form action="/news/<?= esc($news['id']) ?>" method="post">
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">አስተያየት ይስጡ:</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="3"
+                                placeholder="እባኮትን እዚህ ይጻፉ..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">አስተያየት ይስጡ</button>
+                    </form>
+                </div>
+            <?php else: ?>
 
+                <!-- User is not logged in, show a message -->
+                <p>
+                    አስተያየት ለመስጠት እባክዎ <a href="/login">ይግቡ።</a></p>
+
+            <?php endif; ?>
+            <?php if (!empty($news['comments'])): ?>
+                <?php foreach ($news['comments'] as $comment): ?>
+                    <div class="comment my-4">
+                        <strong><?= esc($comment['commenter_name']) ?></strong>
+                        <small>on <?= (new Time($comment['created_at']))->format('M j, Y') ?></small>
+                        <p><?= esc($comment['comment']) ?></p>
+
+
+
+
+                        <?php if (session()->get('isLoggedIn')): ?>
+                            <div class="">
+                                <?php // Condition 1: User is the owner of the comment. Show Edit and Delete. ?>
+                                <?php if (session()->get('userId') == $comment['user_id']): ?>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#editCommentModal" data-comment-id="<?= $comment['id'] ?>"
+                                        data-comment-content="<?= esc($comment['comment']) ?>">
+                                        አሻሽል
+                                    </button>
+
+                                    <!-- Use a form for delete for security (prevents CSRF) -->
+                                    <form action="/comments/delete/<?= $comment['id'] ?>" method="post" class="d-inline"
+                                        onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="_method" value="DELETE"> <!-- Optional: for true RESTful routes -->
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">ሰርዝ</button>
+                                    </form>
+
+                                    <?php // Condition 2: User is an admin (but not the owner). Show Delete only. ?>
+                                <?php elseif (session()->get('userRole') == 'admin'): ?>
+                                    <form action="/comments/delete/<?= $comment['id'] ?>" method="post" class="d-inline"
+                                        onsubmit="return confirm('ADMIN ACTION: Are you sure you want to delete this comment?');">
+                                        <?= csrf_field() ?>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">ሰርዝ (Admin)</button>
+                                    </form>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php // --- END: Action Buttons Logic --- ?>
+
+
+
+
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>
+                    እስካሁን ምንም አስተያየት የለም። አስተያየት ለመስጠት የመጀመሪያው ይሁኑ!</p>
+            <?php endif; ?>
         </div>
 
         <!-- Popular News Sidebar Column -->
@@ -105,7 +186,61 @@ $ogUrl = current_url(true);
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="editCommentModal" tabindex="-1" aria-labelledby="editCommentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCommentModalLabel">አስተያየት አሻሽል (Edit Comment)</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <!-- The form's action URL will be set by our JavaScript -->
+            <form id="editCommentForm" action="" method="post">
+                <div class="modal-body">
+                    <?= csrf_field() ?>
+                    <div class="mb-3">
+                        <label for="editCommentText" class="form-label">አስተያየት:</label>
+                        <!-- This textarea will be filled by our JavaScript -->
+                        <textarea class="form-control" id="editCommentText" name="comment" rows="5" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ይቅር (Cancel)</button>
+                    <button type="submit" class="btn btn-primary">አዘምን (Update)</button>
+                </div>
+            </form>
+
+        </div>
     </div>
 </div>
+    </div>
+    <script>
+        // Get a reference to the modal element
+        const editModal = document.getElementById('editCommentModal');
+
+        // Listen for the Bootstrap 'show.bs.modal' event
+        editModal.addEventListener('show.bs.modal', function (event) {
+            // Get the button that triggered the modal
+            const button = event.relatedTarget;
+
+            // Extract data from the data-* attributes on the button
+            const commentId = button.getAttribute('data-comment-id');
+            const commentContent = button.getAttribute('data-comment-content');
+
+            // Find the form and the textarea inside the modal
+            const modalForm = editModal.querySelector('#editCommentForm');
+            const modalTextarea = editModal.querySelector('#editCommentText');
+
+            // Update the form's action attribute to point to the correct update URL
+            modalForm.action = '/comments/update/' + commentId;
+
+            // Populate the textarea with the current comment content
+            modalTextarea.value = commentContent;
+        });
+    </script>
+</div>
+
+
 
 <?= $this->endSection() ?>

@@ -7,6 +7,7 @@ use App\Models\NewsCategoryModel;
 use App\Models\NewsModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\CommentModel;
 
 class NewsData extends BaseController
 {
@@ -66,7 +67,7 @@ class NewsData extends BaseController
         $categoryModel = new NewsCategoryModel();
 
 
-      
+
 
         $pager = \Config\Services::pager(); // Load the Pager service
 
@@ -86,13 +87,13 @@ class NewsData extends BaseController
         return view('sport', $data);
     }
 
-     public function business()
+    public function business()
     {
         $news_model = new NewsModel();
         $categoryModel = new NewsCategoryModel();
 
 
-      
+
 
         $pager = \Config\Services::pager(); // Load the Pager service
 
@@ -111,4 +112,40 @@ class NewsData extends BaseController
         $data['popular'] = $news_model->getPopularNews();
         return view('bussiness', $data);
     }
+
+    public function create($id = null)
+    {
+
+        $comment_model = new CommentModel();
+        $session = session();
+        $rules = [
+            'comment' => [
+                'label' => 'Comment', // Human-readable name for the field
+                'rules' => 'required|min_length[3]|max_length[255]',
+                'errors' => [
+                    'required' => 'The {field} is required.',
+                ],
+            ],
+        ];
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $userId = $session->get('userId');
+        $comment = $this->request->getPost('comment');
+        $data = [
+            'news_id' => $id,
+            'user_id' => $userId,
+            'comment' => $comment
+        ];
+
+        if ($userId) {
+            // Save the comment to the database
+            $comment_model->save($data);
+            return redirect()->to("/news/$id")->with('message', 'Comment added successfully.');
+        }
+
+        return redirect()->to("/news/$id")->with('error', 'Failed to add comment.');
+    }
+
 }

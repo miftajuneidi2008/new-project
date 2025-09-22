@@ -128,18 +128,33 @@ class NewsModel extends Model
         $builder->select('
             news.*, 
             news_categories.title as category_title, 
-            user.name as author_name
+            user.name as author_name,
+
         ');
 
         $builder->join('news_categories', 'news_categories.id = news.category_id', 'left');
         $builder->join('user', 'user.id = news.user_id', 'left');
 
-        // Find the specific news item by its primary key
+
         $builder->where('news.id', $id);
 
-        // Execute the query and return a single row as an array.
-        // getRowArray() returns null if no results are found.
-        return $builder->get()->getRowArray();
+        $news_data = $builder->get()->getRowArray();
+        $commentBuilder = $this->db->table('comment');
+
+        $commentBuilder->select('
+            comment.*,
+            user.name as commenter_name 
+        ');
+        $commentBuilder->join('user', 'user.id = comment.user_id', 'left');
+        $commentBuilder->where('comment.news_id', $id);
+        $commentBuilder->orderBy('comment.created_at', 'DESC');
+        $comments = $commentBuilder->get()->getResultArray();
+
+
+        $news_data['comments'] = $comments;
+
+        return $news_data;
+
     }
 
     public function getPopularNews(int $currentNewsId = null): array
