@@ -25,6 +25,7 @@ class ProgramCategoryModel extends Model
      * @var array
      */
     protected $allowedFields = [
+        'title',
         'user_id',
         'photo',
         'category_title',

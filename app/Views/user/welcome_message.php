@@ -33,6 +33,7 @@
             color: #e65c00 !important;
             border-bottom: 3px solid #e65c00;
             padding-bottom: 5px;
+            width: max-content;
         }
     </style>
 </head>

@@ -37,7 +37,7 @@
 
                     <div class="mb-4">
                         <label for="title" class="form-label">የፕሮግራም ምድብ ርዕስ</label>
-                        <input type="title" class="form-control" name="title" id="title" aria-describedby="emailHelp"
+                        <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp"
                             value="<?= $program_category['title'] ?>">
                     </div>
 

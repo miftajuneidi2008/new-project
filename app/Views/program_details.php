@@ -3,9 +3,9 @@
 
 <?php
 // Prepare data for meta tags
-$ogTitle = esc($news['title']);
-$ogDescription = esc(substr(strip_tags($news['description']), 0, 155)) . '...';
-$ogImage = base_url('images/' . $news['photo']);
+$ogTitle = esc($program['title']);
+$ogDescription = esc(substr(strip_tags($program['description']), 0, 155)) . '...';
+$ogImage = base_url('images/' . $program['photo']);
 $ogUrl = current_url(true);
 ?>
 <!-- Basic Meta Tags -->
@@ -34,22 +34,22 @@ $ogUrl = current_url(true);
         <!-- Main News Content Column -->
         <div class="col-lg-7">
 
-            <h1 class="display-5 fw-bold mb-3"><?= esc($news['title']) ?></h1>
+            <h1 class="display-5 fw-bold mb-3"><?= esc($program['title']) ?></h1>
 
             <!-- Main Image -->
-            <img src="<?= base_url('images/' . $news['photo']) ?>" class="img-fluid rounded mb-2 w-100"
-                alt="<?= esc($news['title']) ?>">
+            <img src="<?= base_url('images/' . $program['photo']) ?>" class="img-fluid rounded mb-2 w-100"
+                alt="<?= esc($program['title']) ?>">
 
             <!-- Meta Information -->
             <div class="news-meta text-muted mb-4">
-                <span><i class="bi bi-person-fill"></i> <?= esc($news['author_name'] ?? 'Unknown Author') ?></span>
+                <span><i class="bi bi-person-fill"></i> <?= esc($program['author_name'] ?? 'Unknown Author') ?></span>
                 <span class="ms-3"><i class="bi bi-clock"></i>
-                    <?= (new Time($news['created_at']))->format('M j, Y') ?></span>
+                    <?= (new Time($program['created_at']))->format('M j, Y') ?></span>
             </div>
 
             <!-- Full Description -->
             <div class="news-content lead">
-                <?= nl2br($news['description']) ?>
+                <?= nl2br($program['description']) ?>
             </div>
 
             <div class="social-share my-4">
@@ -58,7 +58,7 @@ $ogUrl = current_url(true);
                 <?php
                 // Prepare the data for the share links
                 $shareUrl = urlencode(current_url(true)); // The full URL of the current page
-                $shareTitle = urlencode($news['id']); // The title of the news article
+                $shareTitle = urlencode($program['id']); // The title of the news article
                 ?>
 
                 <div class="d-flex gap-2">
@@ -118,8 +118,8 @@ $ogUrl = current_url(true);
                     አስተያየት ለመስጠት እባክዎ <a href="/login">ይግቡ።</a></p>
 
             <?php endif; ?>
-            <?php if (!empty($news['comments'])): ?>
-                <?php foreach ($news['comments'] as $comment): ?>
+            <?php if (!empty($program['comments'])): ?>
+                <?php foreach ($program['comments'] as $comment): ?>
                     <div class="comment my-4">
                         <strong><?= esc($comment['commenter_name']) ?></strong>
                         <small>on <?= (new Time($comment['created_at']))->format('M j, Y') ?></small>
@@ -139,7 +139,7 @@ $ogUrl = current_url(true);
                                     </button>
 
                                     <!-- Use a form for delete for security (prevents CSRF) -->
-                                    <form action="/comments/delete/<?= $comment['id'] ?>" method="post" class="d-inline"
+                                    <form action="/post-comments/delete/<?= $comment['id'] ?>" method="post" class="d-inline"
                                         onsubmit="return confirm('Are you sure you want to delete this comment?');">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="_method" value="DELETE"> <!-- Optional: for true RESTful routes -->
@@ -148,7 +148,7 @@ $ogUrl = current_url(true);
 
                                     <?php // Condition 2: User is an admin (but not the owner). Show Delete only. ?>
                                 <?php elseif (session()->get('userRole') == 'admin'): ?>
-                                    <form action="/comments/delete/<?= $comment['id'] ?>" method="post" class="d-inline"
+                                    <form action="/post-comments/delete/<?= $comment['id'] ?>" method="post" class="d-inline"
                                         onsubmit="return confirm('ADMIN ACTION: Are you sure you want to delete this comment?');">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="_method" value="DELETE">
@@ -179,7 +179,7 @@ $ogUrl = current_url(true);
                     <h4 class="mb-4">በብዛት የተነበቡ</h4>
                     <ol class="popular-news-list">
                         <?php foreach ($popular as $popular_data): ?>
-                            <li><a href="/news/<?= esc($popular_data['id']) ?>"><?= esc($popular_data['title']) ?> </a></li>
+                            <li><a href="/post/<?= esc($popular_data['id']) ?>"><?= esc($popular_data['title']) ?> </a></li>
                         <?php endforeach ?>
 
                     </ol>
@@ -233,7 +233,7 @@ $ogUrl = current_url(true);
             const modalTextarea = editModal.querySelector('#editCommentText');
 
             // Update the form's action attribute to point to the correct update URL
-            modalForm.action = '/comments/update/' + commentId;
+            modalForm.action = '/post-comments/update/' + commentId;
 
             // Populate the textarea with the current comment content
             modalTextarea.value = commentContent;

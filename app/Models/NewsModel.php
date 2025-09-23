@@ -118,10 +118,16 @@ class NewsModel extends Model
         return $builder->get()->getRowArray();
     }
 
+    public function incrementViewCount(int $id)
+    {
+        $this->db->table($this->table)
+            ->where('id', $id)
+            ->set('view_count', 'view_count+1', false)
+            ->update();
+    }
     public function getNewsDetailsById(int $id): ?array
     {
         // Start building a query from the 'news' table
-        $this->db->table($this->table)->where('id', $id)->set('view_count', 'view_count+1', false)->update();
         $builder = $this->db->table($this->table);
 
         // Define the columns you want to select

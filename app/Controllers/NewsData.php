@@ -47,6 +47,7 @@ class NewsData extends BaseController
         $news_model = new NewsModel();
 
         // Fetch the single news article from the model
+        $news_model->incrementViewCount($id);
         $news_data = $news_model->getNewsDetailsById((int) $id);
 
 

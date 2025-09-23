@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\NewsModel;
+use App\Models\ProgramCategoryModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class User extends BaseController
@@ -11,6 +12,7 @@ class User extends BaseController
     public function index()
     {
         $news_model = new NewsModel();
+        $program_category = new ProgramCategoryModel();
         $data['news'] = $news_model->getNewsWithDetails();
         $data['siltie'] = $news_model->getLatestNewsDetailsByCategory('ስልጤ');
         $data['centeral_ethiopia'] = $news_model->getLatestNewsDetailsByCategory('ማእከላዊ ኢትዮጵያ');
@@ -19,6 +21,7 @@ class User extends BaseController
         $data['world'] = $news_model->getLatestNewsDetailsByCategory('ዓለም');
         $data['sport'] = $news_model->getLatestNewsDetailsByCategory('ስፖርት');
         $data['bussiness'] = $news_model->getLatestNewsDetailsByCategory('ቢዝነስ');
+        $data['program_category'] = $program_category->findAll();
         return view('index', $data);
 
     }

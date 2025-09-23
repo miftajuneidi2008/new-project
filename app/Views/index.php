@@ -69,7 +69,8 @@
                         <img src="<?= base_url('images/' . $siltie['photo']) ?>" alt="<?= esc($siltie['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($siltie['category_title']) ?></span>
-                            <a href="<?= base_url('news/' . esc($siltie['id'])) ?>" class="news-title"><?= esc($siltie['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($siltie['id'])) ?>"
+                                class="news-title"><?= esc($siltie['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($siltie['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -86,7 +87,8 @@
                             alt="<?= esc($centeral_ethiopia['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($centeral_ethiopia['category_title']) ?></span>
-                            <a href="<?= base_url('news/' . esc($centeral_ethiopia['id'])) ?>" class="news-title"><?= esc($centeral_ethiopia['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($centeral_ethiopia['id'])) ?>"
+                                class="news-title"><?= esc($centeral_ethiopia['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($centeral_ethiopia['created_at']))->format('M j, Y') ?>
                             </p>
                         </div>
@@ -101,7 +103,8 @@
                         <img src="<?= base_url('images/' . $ethiopia['photo']) ?>" alt="<?= esc($ethiopia['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($ethiopia['category_title']) ?></span>
-                            <a href="<?= base_url('news/' . esc($ethiopia['id'])) ?>" class="news-title"><?= esc($ethiopia['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($ethiopia['id'])) ?>"
+                                class="news-title"><?= esc($ethiopia['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($ethiopia['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -115,7 +118,8 @@
                         <img src="<?= base_url('images/' . $africa['photo']) ?>" alt="<?= esc($africa['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($africa['category_title']) ?></span>
-                            <a href="<?= base_url('news/' . esc($africa['id'])) ?>" class="news-title"><?= esc($africa['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($africa['id'])) ?>"
+                                class="news-title"><?= esc($africa['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($africa['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -129,7 +133,8 @@
                         <img src="<?= base_url('images/' . $world['photo']) ?>" alt="<?= esc($world['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($world['category_title']) ?></span>
-                            <a href="<?= base_url('news/' . esc($world['id'])) ?>" class="news-title"><?= esc($world['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($world['id'])) ?>"
+                                class="news-title"><?= esc($world['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($world['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -143,7 +148,8 @@
                         <img src="<?= base_url('images/' . $sport['photo']) ?>" alt="<?= esc($sport['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($sport['category_title']) ?></span>
-                            <a href="<?= base_url('news/' . esc($sport['id'])) ?>" class="news-title"><?= esc($sport['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($sport['id'])) ?>"
+                                class="news-title"><?= esc($sport['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($sport['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -157,7 +163,8 @@
                         <img src="<?= base_url('images/' . $bussiness['photo']) ?>" alt="<?= esc($bussiness['title']) ?>">
                         <div class="ms-3">
                             <span class="category-tag tag-siltie"><?= esc($bussiness['category_title']) ?></span>
-                            <a href="<?= base_url('news/' . esc($bussiness['id'])) ?>" class="news-title"><?= esc($bussiness['title']) ?></a>
+                            <a href="<?= base_url('news/' . esc($bussiness['id'])) ?>"
+                                class="news-title"><?= esc($bussiness['title']) ?></a>
                             <p class="news-date mb-0"><?= (new Time($bussiness['created_at']))->format('M j, Y') ?></p>
                         </div>
                     </div>
@@ -168,59 +175,68 @@
     </div>
 
     <section class="programmes-section py-5">
-        <div class="container">
-            <h2 class="section-title mb-4">ፕሮግራሞች</h2>
+        <?php if (!empty($program_category)): ?>
+            <div class="container">
+                <h2 class="section-title mb-4">ፕሮግራሞች</h2>
 
-            <!-- The Slick Carousel container -->
-            <div class="programme-slider">
-                <!-- Item 1 -->
-                <div class="programme-item">
-                    <img src="https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600"
-                        alt="Technology">
-                    <div class="programme-overlay">
-                        <h4 class="programme-title">ቴክኖሎጂ</h4>
+                <!-- The Slick Carousel container -->
+                <div class="programme-slider">
+                    <!-- Item 1 -->
+                    <?php foreach ($program_category as $program_info): ?>
+                        <div class="programme-item">
+
+                            <img src="<?= base_url('images/' . $program_info['photo']) ?>" class="card-img-top"
+                                style="height: 300px; object-fit: cover;" alt="<?= esc($program_info['title']) ?>">
+                            <div class="programme-overlay">
+                                <h4 class="programme-title"><?= esc($program_info['title']) ?></h4>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+
+                    <!-- Item 2 -->
+                    <div class="programme-item">
+                        <img src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg" alt="Science">
+                        <div class="programme-overlay">
+                            <h4 class="programme-title">ሳይንስ</h4>
+                        </div>
                     </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="programme-item">
-                    <img src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg" alt="Science">
-                    <div class="programme-overlay">
-                        <h4 class="programme-title">ሳይንስ</h4>
+                    <!-- Item 3 -->
+                    <div class="programme-item">
+                        <img src="https://images.pexels.com/photos/1111312/pexels-photo-1111312.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt="Culture">
+                        <div class="programme-overlay">
+                            <h4 class="programme-title">ባህል</h4>
+                        </div>
                     </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="programme-item">
-                    <img src="https://images.pexels.com/photos/1111312/pexels-photo-1111312.jpeg?auto=compress&cs=tinysrgb&w=600"
-                        alt="Culture">
-                    <div class="programme-overlay">
-                        <h4 class="programme-title">ባህል</h4>
+                    <!-- Item 4 -->
+                    <div class="programme-item">
+                        <img src="https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg" alt="Art">
+                        <div class="programme-overlay">
+                            <h4 class="programme-title">ስነ ጥበብ</h4>
+                        </div>
                     </div>
-                </div>
-                <!-- Item 4 -->
-                <div class="programme-item">
-                    <img src="https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg" alt="Art">
-                    <div class="programme-overlay">
-                        <h4 class="programme-title">ስነ ጥበብ</h4>
+                    <!-- Item 5 -->
+                    <div class="programme-item">
+                        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt="Business">
+                        <div class="programme-overlay">
+                            <h4 class="programme-title">ቢዝነስ</h4>
+                        </div>
                     </div>
-                </div>
-                <!-- Item 5 -->
-                <div class="programme-item">
-                    <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600"
-                        alt="Business">
-                    <div class="programme-overlay">
-                        <h4 class="programme-title">ቢዝነስ</h4>
-                    </div>
-                </div>
-                <!-- Item 6 -->
-                <div class="programme-item">
-                    <img src="https://images.pexels.com/photos/207940/pexels-photo-207940.jpeg?auto=compress&cs=tinysrgb&w=600"
-                        alt="History">
-                    <div class="programme-overlay">
-                        <h4 class="programme-title">ታሪክ</h4>
+                    <!-- Item 6 -->
+                    <div class="programme-item">
+                        <img src="https://images.pexels.com/photos/207940/pexels-photo-207940.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt="History">
+                        <div class="programme-overlay">
+                            <h4 class="programme-title">ታሪክ</h4>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php else: ?>
+            <p>
+                እስካሁን ምንም ፕሮግራም የለም።</p>
+        <?php endif; ?>
     </section>
 </div>
 <?= $this->endSection() ?>
