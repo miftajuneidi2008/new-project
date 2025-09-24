@@ -10,7 +10,7 @@ $routes->get('/login', 'Login::index');
 $routes->get('/login/gmailCallback', 'Login::gmailCallback');
 $routes->get('/logout', 'Login::logout');
 $routes->get('images/(:segment)', 'ImageController::show/$1');
-
+$routes->get('/live', 'User::live');
 $routes->get('/admin', 'Admin::index', ['filter' => 'auth:admin']); // Apply auth filter for admin
 $routes->get('/news', 'NewsData::index');
 $routes->get('/news/(:num)', 'NewsData::show/$1');
@@ -40,3 +40,9 @@ $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
     $routes->resource('program', ['controller' => 'Program']);
 });
+
+$routes->get('admin/links', 'Admin::links', ['filter' => 'auth:admin']);
+$routes->post('admin/links', 'Admin::create', ['filter' => 'auth:admin']);
+$routes->get('admin/logo', 'Admin::show_logo', ['filter' => 'auth:admin']);
+$routes->post('admin/logo', 'Admin::add_logo', ['filter' => 'auth:admin']);
+$routes->get('admin/site-link', 'Admin::siteLink', ['filter' => 'auth:admin']);

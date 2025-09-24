@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\NewsModel;
 use App\Models\ProgramCategoryModel;
+use App\Models\SiteUrl;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class User extends BaseController
@@ -24,5 +25,10 @@ class User extends BaseController
         $data['program_category'] = $program_category->findAll();
         return view('index', $data);
 
+    }
+    public function live(){
+        $model = new SiteUrl();
+        $data['site_url'] = $model->findAll();
+        return view('live', $data);
     }
 }

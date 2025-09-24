@@ -102,7 +102,7 @@ $ogUrl = current_url(true);
                             <?= session()->getFlashdata('message') ?>
                         </div>
                     <?php endif; ?>
-                    <form action="/post/<?= esc($program['id']) ?>" method="post">
+                    <form action="/news/<?= esc($news['id']) ?>" method="post">
                         <div class="mb-3">
                             <label for="comment" class="form-label">አስተያየት ይስጡ:</label>
                             <textarea class="form-control" id="comment" name="comment" rows="3"

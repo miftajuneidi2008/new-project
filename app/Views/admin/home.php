@@ -66,10 +66,10 @@
                                 የዜና ምድብ
                             </a>
 
-                            <a class="nav-link" href="<?php echo base_url('admin/'); ?>">
+                            <a class="nav-link" href="<?php echo base_url('admin/links'); ?>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 
-                                የድርጂቱ መረጃ
+                                የቀጥታ አገናኝ
                             </a>
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">

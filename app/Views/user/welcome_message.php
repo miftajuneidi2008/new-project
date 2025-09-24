@@ -22,8 +22,7 @@
 
     <!-- Slick Carousel CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+
 
     <!-- STYLES -->
 
@@ -78,7 +77,8 @@
 
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="btn btn-outline-danger" aria-current="page" href="#" id="liveStreamButton">ቀጥታ</a>
+                            <a class="btn btn-outline-danger" aria-current="page" href="/live"
+                                id="liveStreamButton">ቀጥታ</a>
                         </li>
                         <?php if (session()->get('isLoggedIn')): ?>
                             <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
@@ -225,23 +225,23 @@
         });
     </script>
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Get the current page's path
-        const currentPage = window.location.pathname;
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the current page's path
+            const currentPage = window.location.pathname;
 
-        // Get all the navigation links
-        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            // Get all the navigation links
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
-        // Loop through each link
-        navLinks.forEach(link => {
-            // If the link's href matches the current page
-            if (link.getAttribute('href') === currentPage) {
-                // Add the 'active' class to it
-                link.classList.add('active');
-            }
+            // Loop through each link
+            navLinks.forEach(link => {
+                // If the link's href matches the current page
+                if (link.getAttribute('href') === currentPage) {
+                    // Add the 'active' class to it
+                    link.classList.add('active');
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
 
