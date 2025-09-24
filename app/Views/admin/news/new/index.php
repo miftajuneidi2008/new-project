@@ -8,7 +8,7 @@
         <!-- 2. Create a row. Use flexbox utilities to center the column inside it -->
         <div class="row">
 
-      
+
             <div class="col-md-8 col-lg-8 card py-2 px-5">
 
                 <?php if (session()->getFlashdata('errors')): ?>
@@ -42,7 +42,8 @@
                     </div>
 
                     <div class="mb-4">
-                        <select class="form-select" name="news_category_id" id="news_category_id" aria-label="Default select example">
+                        <select class="form-select" name="news_category_id" id="news_category_id"
+                            aria-label="Default select example">
                             <option selected>የዜና ምድብ ይምረጡ</option>
                             <?php foreach ($news_categories as $news_category): ?>
                                 <option value="<?= $news_category['id'] ?>"><?= $news_category['title'] ?></option>
@@ -63,8 +64,6 @@
     </div>
     <script src="https://cdn.tiny.cloud/1/ogyofgs6ef1u3by9f9a5j52p20vtuhw58z7x7k5qns4wrlsb/tinymce/8/tinymce.min.js"
         referrerpolicy="origin" crossorigin="anonymous"></script>
-
-
     <script>
         tinymce.init({
             selector: 'textarea#description',

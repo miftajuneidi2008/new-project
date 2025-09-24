@@ -127,7 +127,7 @@ class NewsCategory extends BaseController
     public function delete($id = null)
     {
         $model = new NewsCategoryModel();
-
+         
         if ($model->delete($id)) {
             return redirect()->to('/admin/news_category')->with('message', 'News category deleted successfully.');
         } else {
