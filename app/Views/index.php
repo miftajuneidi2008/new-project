@@ -183,54 +183,19 @@
                 <div class="programme-slider">
                     <!-- Item 1 -->
                     <?php foreach ($program_category as $program_info): ?>
-                        <div class="programme-item">
+                        <a href="/programs/<?= esc($program_info['id']) ?>">
+                            <div class="programme-item">
 
-                            <img src="<?= base_url('images/' . $program_info['photo']) ?>" class="card-img-top"
-                                style="height: 300px; object-fit: cover;" alt="<?= esc($program_info['title']) ?>">
-                            <div class="programme-overlay">
-                                <h4 class="programme-title"><?= esc($program_info['title']) ?></h4>
+                                <img src="<?= base_url('images/' . $program_info['photo']) ?>" class="card-img-top"
+                                    style="height: 300px; object-fit: cover;" alt="<?= esc($program_info['title']) ?>">
+                                <div class="programme-overlay">
+                                    <h4 class="programme-title"><?= esc($program_info['title']) ?></h4>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     <?php endforeach; ?>
 
-                    <!-- Item 2 -->
-                    <div class="programme-item">
-                        <img src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg" alt="Science">
-                        <div class="programme-overlay">
-                            <h4 class="programme-title">ሳይንስ</h4>
-                        </div>
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="programme-item">
-                        <img src="https://images.pexels.com/photos/1111312/pexels-photo-1111312.jpeg?auto=compress&cs=tinysrgb&w=600"
-                            alt="Culture">
-                        <div class="programme-overlay">
-                            <h4 class="programme-title">ባህል</h4>
-                        </div>
-                    </div>
-                    <!-- Item 4 -->
-                    <div class="programme-item">
-                        <img src="https://images.pexels.com/photos/1585325/pexels-photo-1585325.jpeg" alt="Art">
-                        <div class="programme-overlay">
-                            <h4 class="programme-title">ስነ ጥበብ</h4>
-                        </div>
-                    </div>
-                    <!-- Item 5 -->
-                    <div class="programme-item">
-                        <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600"
-                            alt="Business">
-                        <div class="programme-overlay">
-                            <h4 class="programme-title">ቢዝነስ</h4>
-                        </div>
-                    </div>
-                    <!-- Item 6 -->
-                    <div class="programme-item">
-                        <img src="https://images.pexels.com/photos/207940/pexels-photo-207940.jpeg?auto=compress&cs=tinysrgb&w=600"
-                            alt="History">
-                        <div class="programme-overlay">
-                            <h4 class="programme-title">ታሪክ</h4>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         <?php else: ?>

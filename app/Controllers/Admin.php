@@ -12,17 +12,7 @@ use App\Models\SiteUrl;
 class Admin extends BaseController
 {
 
-    public function __construct()
-    {
-        // Check if user is logged in
-        if (!session()->get('isLoggedIn')) {
-            return redirect()->to('/login');
-        }
-        // If user is admin, redirect from regular dashboard
-        if (session()->get('userRole') === 'admin') {
-            return redirect()->to('/admin/index');
-        }
-    }
+
     public function index(): string
     {
         $news_model = new NewsModel();
@@ -42,7 +32,12 @@ class Admin extends BaseController
     }
     public function links()
     {
-        return view('/admin/links');
+        $logo_model = new LogoModel();
+        $links_model = new SiteUrl();
+        $data['logo'] = $logo_model->findAll();
+        $data['audio'] = $links_model->getAudio();
+        $data['video'] = $links_model->getVideo();
+        return view('/admin/links', $data);
     }
     public function siteLink()
     {
@@ -138,5 +133,117 @@ class Admin extends BaseController
         // This case is for database errors, not validation errors.
         return redirect()->back()->withInput()->with('errors', ['database' => 'Failed to save the logo to the database.']);
     }
-    
+
+
+    public function update_logo($id = null)
+    {
+        $logo_model = new LogoModel();
+        $logo = $logo_model->find($id);
+        log_message('debug', message: 'image received: ' . $id); // 
+
+        if (!$logo) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $rules = [
+            'logo' => [
+                'label' => 'Image File',
+                'rules' => [
+                    'uploaded[logo]', // Ensures a file was actually uploaded
+                    'is_image[logo]',
+                    'mime_in[logo,image/jpg,image/jpeg,image/png,image/gif]',
+                    'max_size[logo,2048]', // Max size 2MB
+                ],
+            ],
+        ];
+
+
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+        $img = $this->request->getFile('logo');
+
+        if ($this->request->getFile('logo') && $img->isValid() && !$img->hasMoved()) {
+
+            // a. Get the old image's filename from the record we fetched earlier.
+            $oldImage = $logo['url']; // Assuming 'image' is your DB column name
+
+            // b. If an old image exists, delete it from the server.
+            if ($oldImage && file_exists(ROOTPATH . 'uploads/' . $oldImage)) {
+                unlink(ROOTPATH . 'uploads/' . $oldImage);
+            }
+
+            // c. Upload the new image.
+            $newName = $img->getRandomName();
+            $img->move(ROOTPATH . 'uploads', $newName);
+
+            // d. Add the new image's filename to our data array for saving.
+            $data['url'] = $newName;
+        }
+
+        if ($logo_model->update($id, $data)) {
+            // Redirect to the correct list page.
+            return redirect()->to('/admin/links/')->with('message', 'Program category updated successfully.');
+        } else {
+            return redirect()->back()->withInput()->with('errors', $logo_model->errors());
+        }
+
+
+    }
+
+    public function delete_link($id = null)
+    {
+        $linkModel = new SiteUrl();
+
+        // Security Check: Is the user logged in?
+        if (!session()->get('isLoggedIn')) {
+            return redirect()->to('/login')->with('error', 'You must be logged in.');
+        }
+
+        // Security Check: Is user an admin OR the owner of the comment?
+        if (session()->get('userRole') !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to perform this action.');
+        }
+
+        // If checks pass, delete the comment
+        $linkModel->delete($id);
+
+        return redirect()->back()->with('success', 'link deleted successfully.');
+    }
+
+
+    public function update_link($id = null)
+    {
+        // Validation rules
+        log_message('debug', message: 'ID received: ' . ($id ?? 'null')); // 
+
+        $rules = [
+            'link' => [
+                'label' => 'URL Adress',
+                // Corrected table name to 'program_categories'
+                'rules' => "required|valid_url_strict|is_unique[site_url.url]",
+                'errors' => [
+                    'required' => 'The url {field} is required.',
+                    'is_unique' => 'This url already exists. Please choose another.'
+                ]
+            ]
+        ];
+        if (!$this->validate($rules)) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        // Security Check: User must be the owner
+        $linkModel = new SiteUrl();
+        $link = $linkModel->find($id);
+        if (!$link || session()->get('userRole') !== 'admin') {
+            return redirect()->back()->with('error', 'You do not have permission to do this.');
+        }
+
+        // Update the data in the database
+        $linkModel->update($id, ['url' => $this->request->getPost('link')]);
+
+        // Redirect back with a success message
+        return redirect()->back()->with('message', 'link updated successfully.');
+    }
+
 }

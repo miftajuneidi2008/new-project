@@ -26,6 +26,17 @@ $routes->get('/business', 'NewsData::business');
 $routes->get('/program', 'ProgramData::index');
 $routes->get('/post/(:num)', 'ProgramData::program_details/$1');
 $routes->post('/post/(:num)', 'ProgramData::create/$1');
+$routes->get('admin/links', 'Admin::links', ['filter' => 'auth:admin']);
+$routes->post('admin/links', 'Admin::create', ['filter' => 'auth:admin']);
+$routes->get('admin/logo', 'Admin::show_logo', ['filter' => 'auth:admin']);
+$routes->post('admin/logo', 'Admin::add_logo', ['filter' => 'auth:admin']);
+$routes->get('admin/site-link', 'Admin::siteLink', ['filter' => 'auth:admin']);
+
+$routes->delete('admin/links/delete/(:num)', 'Admin::delete_link/$1', ['filter' => 'auth:admin']);
+$routes->post('admin/links/update/(:num)', 'Admin::update_link/$1', ['filter' => 'auth:admin']);
+$routes->post('admin/logo/update/(:num)', 'Admin::update_logo/$1', ['filter' => 'auth:admin']);
+
+
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
     $routes->resource('news_category', ['controller' => 'NewsCategory']);
 });
@@ -41,8 +52,5 @@ $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
     $routes->resource('program', ['controller' => 'Program']);
 });
 
-$routes->get('admin/links', 'Admin::links', ['filter' => 'auth:admin']);
-$routes->post('admin/links', 'Admin::create', ['filter' => 'auth:admin']);
-$routes->get('admin/logo', 'Admin::show_logo', ['filter' => 'auth:admin']);
-$routes->post('admin/logo', 'Admin::add_logo', ['filter' => 'auth:admin']);
-$routes->get('admin/site-link', 'Admin::siteLink', ['filter' => 'auth:admin']);
+
+
