@@ -160,6 +160,30 @@ class ProgramModel extends Model
 
     }
 
+
+        public function getPopularProgramsFooter(int $id=null): ?array
+    {
+       $builder = $this->db->table($this->table);
+
+        // Select all columns from the news table
+        $builder->select('*');
+
+        if ($id) {
+            $builder->where('id !=', $id);
+        }
+
+
+
+        // Order the results by view_count in descending order
+        $builder->orderBy('view_count', 'DESC');
+
+        // Limit the results to the top 5
+        $builder->limit(3);
+
+        // Execute the query and return the results as an array
+        return $builder->get()->getResultArray();
+
+    }
     public function getProgramDetailsById(int $id): ?array
     {
         // Start building a query from the 'news' table

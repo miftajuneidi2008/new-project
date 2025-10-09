@@ -183,8 +183,19 @@ $ogUrl = current_url(true);
                         <?php endforeach ?>
 
                     </ol>
+                    <?php if (!empty($adds)): ?>
+
+                        <div>
+                            <h2 class="text-center" style="font-size:20px;">ማስታወቅያ</h2>
+                            <img src="<?= base_url('images/' . $adds[0]['photo']) ?>" alt="adds"
+                                style="width:100%; height:300px;" />
+                        </div>
+                    <?php endif ?>
                 </div>
+
             </div>
+
+
         </div>
 
         <div class="modal fade" id="editCommentModal" tabindex="-1" aria-labelledby="editCommentModalLabel"

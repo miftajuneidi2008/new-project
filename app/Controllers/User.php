@@ -3,8 +3,10 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\AboutModel;
 use App\Models\NewsModel;
 use App\Models\ProgramCategoryModel;
+use App\Models\ScheduleModel;
 use App\Models\SiteUrl;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -23,12 +25,22 @@ class User extends BaseController
         $data['sport'] = $news_model->getLatestNewsDetailsByCategory('ስፖርት');
         $data['bussiness'] = $news_model->getLatestNewsDetailsByCategory('ቢዝነስ');
         $data['program_category'] = $program_category->findAll();
-        return view('index', $data);
+        return $this->render('index', $data);
 
     }
-    public function live(){
+    public function live()
+    {
         $model = new SiteUrl();
-        $data['site_url'] = $model->findAll();
+        $schedule_model = new ScheduleModel();
+        $data['audio'] = $model->getAudio();
+        $data['video'] = $model->getVideo();
+        $data['schedule'] = $schedule_model->findAll();
         return view('live', $data);
+    }
+    public function about()
+    {
+      $about_model = new AboutModel();
+      $data['about'] = $about_model->findAll();
+        return $this->render('about',$data);
     }
 }

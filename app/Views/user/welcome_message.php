@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
     <!-- Slick Carousel CSS -->
@@ -42,11 +42,16 @@
 </head>
 
 <body>
+    <?php use CodeIgniter\I18n\Time; ?>
+
 
     <header class="bg-white shadow sticky-top">
         <nav class="navbar navbar-expand-lg py-4 py-lg-0  bg-white">
             <div class="container px-4">
-                <img src="/logo.png" alt="siltie fm logo" width="80" height="50">
+                <a href="/">
+                    <img src="<?= base_url('images/' . $logo[0]['url']) ?>" alt="siltie fm logo" width="80" height="70"
+                        aria-multiline="siltie fm">
+                </a>
                 <button class="navbar-toggler border-0 text-black" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#top-navbar" aria-controls="top-navbar">
                     <i class="bi bi-list"></i>
@@ -77,6 +82,9 @@
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
                             <a class="nav-link" aria-current="page" href="/program">ፕሮግራም</a>
+                        </li>
+                        <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
+                            <a class="nav-link" aria-current="page" href="/about">ስለ እኛ</a>
                         </li>
 
                         </li>
@@ -119,65 +127,63 @@
 
     <footer class="footer-enhanced pt-5">
         <div class="container text-left">
-            <div class="row gy-4">
+            <div class="row d-flex justify-content-between justify-items-center flex-wrap ">
 
                 <!-- Column 1: About Us -->
                 <div class="col-lg-3 col-md-6">
                     <h5>ስለ እኛ</h5>
-                    <p>OBN Website is a part of Oromia Broadcasting Network (OBN), producing news, documentary and
-                        programs in Afaan Oromoo language to reach our audiences in all over the world.</p>
+                    <?php if ($about): ?>
+
+                        <div>
+                            <?= substr(strip_tags(nl2br($about[0]['description'])), 0, 200) ?>
+                            <?php if (strlen(strip_tags($about[0]['description'])) > 200): ?>
+                                ... <a href="<?= base_url('about') ?>" class="read-more-link">ተጨማሪ ያንብቡ</a>
+                            <?php endif; ?>
+
+
+                        </div>
+                    <?php endif ?>
                     <div class="social-icons mt-4">
-                        <a href="#"><i class="bi bi-facebook"></i></a>
-                        <a href="#"><i class="bi bi-instagram"></i></a>
-                        <a href="#"><i class="bi bi-telegram"></i></a>
-                        <a href="#"><i class="bi bi-tiktok"></i></a>
-                        <a href="#"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#"><i class="bi bi-youtube"></i></a>
+                        <a href="https://web.facebook.com/profile.php?id=100082825107454"><i
+                                class="bi bi-facebook"></i></a>
+
+                        <a href="https://t.me/siltieFM"><i class="bi bi-telegram"></i></a>
+                        <a href="https://www.tiktok.com/@siltie.fm.92.6?_t=8grgs10DJyv&_r=1"><i
+                                class="bi bi-tiktok"></i></a>
+
+                        <a href="https://youtube.com/@siltiefm92.6?si=hRXBMraXGNfs-r15"><i
+                                class="bi bi-youtube"></i></a>
                     </div>
                 </div>
 
-                <!-- Column 2: OBN Links -->
-                <div class="col-lg-2 col-md-6 footer-links">
-                    <h5>ስልጤ ፍም</h5>
-                    <a href="#">Waa'ee OBN</a>
-                    <a href="#">Teessoo</a>
-                    <a href="#">Ergama</a>
-                    <a href="#">Mul'ata</a>
-                    <a href="#">Duudhaa</a>
-                </div>
 
-                <!-- Column 3: Recent Posts -->
                 <div class="col-lg-4 col-md-6">
                     <h5>ብዙህ የተነበቡ ዜናዎች</h5>
-                    <div class="recent-post mb-3">
-                        <a href="#">Barataa Qormaata Biyyaalessaa Kutaa 12ffaan 600 keessaa qabxii 9 qofa dhabeen wal
-                            baraa.</a>
-                        <small class="d-block mt-1">ARTICLES · September 15, 2025</small>
-                    </div>
-                    <div class="recent-post">
-                        <a href="#">Bara 2017 oomishtummaan aannanii harka 172'n guddate jedhe, Biiroon Qonnaa
-                            Oromiyaa</a>
-                        <small class="d-block mt-1">ODUU · September 8, 2025</small>
-                    </div>
+                    <?php if ($popularNews): ?>
+                        <?php foreach ($popularNews as $pnews): ?>
+                            <div class="recent-post mb-3">
+                                <a href="/news/<?= esc($pnews['id']) ?>"><?= esc($pnews['title']) ?></a>
+                                <small class="d-block mt-1">
+                                    <?= (new Time($pnews['created_at']))->format('M j, Y') ?></span></small>
+                            </div>
+                        <?php endforeach ?>
+                    <?php endif ?>
+
                 </div>
 
                 <!-- Column 4: Subscribe Form -->
-                <div class="col-lg-3 col-md-6">
-                    <h5>Subscribe</h5>
-                    <p>Get the latest news and updates right in your inbox.</p>
-                    <form>
-                        <div class="mb-3">
-                            <input type="email" class="form-control form-control-dark" placeholder="Email address">
-                        </div>
-                        <button type="submit" class="btn btn-subscribe w-100 py-2">I WANT IN <i
-                                class="bi bi-arrow-right"></i></button>
-                    </form>
-                    <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" value="" id="privacyCheck">
-                        <label class="form-check-label small" for="privacyCheck">
-                            I've read and accept the <a href="#" class="privacy-link">Privacy Policy.</a>
-                        </label>
-                    </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5>ብዙህ የተነበቡ ፕሮግራሞች</h5>
+                    <?php if ($popularProgram): ?>
+                        <?php foreach ($popularProgram as $pProgram): ?>
+                            <div class="recent-post mb-3">
+                                <a href="/news/<?= esc($pProgram['id']) ?>"><?= esc($pProgram['title']) ?></a>
+                                <small class="d-block mt-1">
+                                    <?= (new Time($pProgram['created_at']))->format('M j, Y') ?></span></small>
+                            </div>
+                        <?php endforeach ?>
+                    <?php endif ?>
+
                 </div>
 
             </div>
@@ -185,7 +191,10 @@
 
         <!-- Bottom Footer Bar -->
         <div class="footer-bottom text-center mt-5 py-3">
-            <p class="mb-0 small">&copy; 2025 OBN Sagalee Ummataa. All Rights Reserved.</p>
+            <?php
+            $currentYear = date('Y');
+            ?>
+            <p class="mb-0 small">&copy; <?= $currentYear ?> Siltite Radio. All Rights Reserved.</p>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"

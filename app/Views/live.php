@@ -90,27 +90,55 @@
                 <!-- --- MODIFICATION 2: Make the video responsive and fill the width --- -->
                 <!-- We wrap the iframe in a div with Bootstrap's ratio class -->
                 <div class="ratio ratio-16x9">
-                    <iframe src="https://embed.novastream.et/HbWSlLJTmbeal-FeBOYjRKac" title="NovaStream Video Player"
-                        frameborder="0" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope;"
-                        allowfullscreen referrerpolicy="no-referrer">
-                    </iframe>
+                    <?php if (!empty($video)): ?>
+                        <iframe src="<?php echo htmlspecialchars($video['url'], ENT_QUOTES, 'UTF-8'); ?>"
+                            title="NovaStream Video Player" frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope;" allowfullscreen
+                            referrerpolicy="no-referrer">
+                        </iframe>
+                    <?php else: ?>
+                        <p>
+
+                            ትክክለኛ ምስል ማገናኛ የለም።</p>
+                    <?php endif; ?>
                 </div>
 
             </div>
             <!-- Content for Fana FM Radio -->
             <div class="tab-pane fade" id="fana-fm" role="tabpanel" aria-labelledby="fana-fm-tab">
                 <h5 class="text-white">ስልጤ ፍም ሬዲዮ ማጫወቻ</h5>
-                <p class="text-secondary"> አሁን ፋና ፍም በቀጥታ በመጫወት ላይ።</p>
+                <p class="text-secondary"> አሁን ስልጤ ፍም በቀጥታ በመጫወት ላይ።</p>
 
                 <!-- --- MODIFICATION 3: Replace iframe with an HTML5 audio tag for styling --- -->
-                <audio controls class="custom-audio-player" src="https://stream.zeno.fm/dfroy2it9yntv">
 
-                    አሁን ፋና ፍም በቀጥታ በመጫወት ላይ።
-                </audio>
+                <?php if (!empty($audio)): ?>
+                    <audio controls class="custom-audio-player"
+                        src="<?php echo htmlspecialchars($audio['url'], ENT_QUOTES, 'UTF-8'); ?>">
+
+                        አሁን ስልጤ ፍም በቀጥታ በመጫወት ላይ።
+                    </audio>
+                <?php else: ?>
+                    <p>
+
+                        ትክክለኛ የድምጽ ማገናኛ የለም።</p>
+                <?php endif; ?>
             </div>
         </div>
 
     </div>
+    <?php if (!empty($schedule)): ?>
+        <div class="container">
+            <h2 class="text-center my-4" style="margin-top:20px;">ሳምንታዊ መርሐግብር</h2>
+            <div class="news-content lead text-center">
+                <?= nl2br($schedule[0]['description']) ?>
+            </div>
+        </div>
+    <?php else: ?>
+        <p>
+
+
+            ምንም መርሐግብር የለም።</p>
+    <?php endif; ?>
 
 </div>
 <?= $this->endSection() ?>

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\AddsModel;
 use App\Models\CommentModel;
 use App\Models\ProgramCategoryModel;
 use App\Models\ProgramComment;
@@ -16,12 +17,14 @@ class ProgramData extends BaseController
     {
         $program_model = new ProgramCategoryModel();
         $data['program_category'] = $program_model->findAll();
-        return view('program', $data);
+        return $this->render('program', $data);
     }
     public function show($id)
     {
         $program_model = new ProgramModel();
         $program_category_model = new ProgramCategoryModel();
+        $adds_model = new AddsModel();
+
 
         // Fetch the single news article from the model
         $pager = \Config\Services::pager();
@@ -29,6 +32,7 @@ class ProgramData extends BaseController
 
         $data['program_list'] = $program_model->getNewsPostDetails((int) $id);
         $data['program_name'] = $program_category_model->find($id);
+        $data['adds'] = $adds_model->findAll();
 
         $perPage = 3;
         $total = count($data['program_list']);
@@ -36,21 +40,21 @@ class ProgramData extends BaseController
 
         $page = $pager->getCurrentPage();
 
-     
+
         $data['pager'] = $pager->makeLinks($page, $perPage, $total, 'bootstrap5_pagination');
 
 
         $data['program_list'] = array_slice($data['program_list'], ($page - 1) * $perPage, $perPage);
-        $data['popular'] = $program_model-> getPopularPost();
+        $data['popular'] = $program_model->getPopularPost();
 
-        return view('program_list', $data);
+        return $this->render('program_list', $data);
     }
     public function program_details($id)
     {
         $program_model = new ProgramModel();
 
         // Fetch the single news article from the model
-        $program_model-> incrementViewCount($id);
+        $program_model->incrementViewCount($id);
         $program_data = $program_model->getProgramDetailsById((int) $id);
 
 
@@ -61,12 +65,12 @@ class ProgramData extends BaseController
 
         $data['program'] = $program_data;
         log_message('info', 'Program Data: ' . print_r($data['program'], true));
-        $data['popular'] = $program_model-> getPopularPrograms($id);
+        $data['popular'] = $program_model->getPopularPrograms($id);
 
-        return view('program_details', $data); 
+        return $this->render('program_details', $data);
     }
 
-      public function create($id = null)
+    public function create($id = null)
     {
 
         $comment_model = new ProgramComment();
@@ -80,7 +84,7 @@ class ProgramData extends BaseController
                 ],
             ],
         ];
-         log_message('info', 'Program ID: ' . $this->request->getPost('comment'));
+        log_message('info', 'Program ID: ' . $this->request->getPost('comment'));
         if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -91,7 +95,7 @@ class ProgramData extends BaseController
             'user_id' => $userId,
             'comment' => $comment
         ];
-   
+
         if ($userId) {
             // Save the comment to the database
             $comment_model->save($data);

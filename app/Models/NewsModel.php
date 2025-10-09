@@ -186,4 +186,27 @@ class NewsModel extends Model
         return $builder->get()->getResultArray();
     }
 
+       public function getPopularNewsFooter(int $currentNewsId = null): array
+    {
+        $builder = $this->db->table($this->table);
+
+        // Select all columns from the news table
+        $builder->select('*');
+
+        if ($currentNewsId) {
+            $builder->where('id !=', $currentNewsId);
+        }
+
+
+
+        // Order the results by view_count in descending order
+        $builder->orderBy('view_count', 'DESC');
+
+        // Limit the results to the top 5
+        $builder->limit(3);
+
+        // Execute the query and return the results as an array
+        return $builder->get()->getResultArray();
+    }
+
 }

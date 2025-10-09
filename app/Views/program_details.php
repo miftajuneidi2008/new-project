@@ -183,37 +183,48 @@ $ogUrl = current_url(true);
                         <?php endforeach ?>
 
                     </ol>
+                    <?php if (!empty($adds)): ?>
+
+                        <div>
+                            <h2 class="text-center" style="font-size:20px;">ማስታወቅያ</h2>
+                            <img src="<?= base_url('images/' . $adds[0]['photo']) ?>" alt="adds"
+                                style="width:100%; height:300px;" />
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
         </div>
 
-        <div class="modal fade" id="editCommentModal" tabindex="-1" aria-labelledby="editCommentModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editCommentModalLabel">አስተያየት አሻሽል (Edit Comment)</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            
-            <!-- The form's action URL will be set by our JavaScript -->
-            <form id="editCommentForm" action="" method="post">
-                <div class="modal-body">
-                    <?= csrf_field() ?>
-                    <div class="mb-3">
-                        <label for="editCommentText" class="form-label">አስተያየት:</label>
-                        <!-- This textarea will be filled by our JavaScript -->
-                        <textarea class="form-control" id="editCommentText" name="comment" rows="5" required></textarea>
+        <div class="modal fade" id="editCommentModal" tabindex="-1" aria-labelledby="editCommentModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editCommentModalLabel">አስተያየት አሻሽል (Edit Comment)</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ይቅር (Cancel)</button>
-                    <button type="submit" class="btn btn-primary">አዘምን (Update)</button>
-                </div>
-            </form>
 
+                    <!-- The form's action URL will be set by our JavaScript -->
+                    <form id="editCommentForm" action="" method="post">
+                        <div class="modal-body">
+                            <?= csrf_field() ?>
+                            <div class="mb-3">
+                                <label for="editCommentText" class="form-label">አስተያየት:</label>
+                                <!-- This textarea will be filled by our JavaScript -->
+                                <textarea class="form-control" id="editCommentText" name="comment" rows="5"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ይቅር
+                                (Cancel)</button>
+                            <button type="submit" class="btn btn-primary">አዘምን (Update)</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
         </div>
-    </div>
-</div>
     </div>
     <script>
         // Get a reference to the modal element

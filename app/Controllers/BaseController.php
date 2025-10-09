@@ -2,6 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\AboutModel;
+use App\Models\LogoModel;
+use App\Models\NewsModel;
+use App\Models\ProgramModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -36,6 +40,7 @@ abstract class BaseController extends Controller
      * @var list<string>
      */
     protected $helpers = [];
+    protected $data = [];
 
     /**
      * Be sure to declare properties for any property fetch you initialized.
@@ -54,5 +59,40 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = service('session');
+
+        $logo_model = new LogoModel();
+        $about_model = new AboutModel();
+        $news_model = new NewsModel();
+        $program_model = new ProgramModel();
+        $about_us = $about_model->findAll();
+        $allLogos = $logo_model->findAll();
+        $popularNews = $news_model->getPopularNewsFooter();
+        $popularProgram = $program_model->getPopularProgramsFooter();
+
+        $this->data['about'] = $about_us;
+        if (!empty($allLogos)) {
+            $this->data['logo'] = $allLogos;
+            $this->data['popularNews'] = $popularNews;
+            $this->data['popularProgram'] = $popularProgram;
+
+        }
+    }
+
+    // A property to hold data common to all views using the layout
+
+
+    /**
+     * Renders a view with common layout data.
+     * This custom render method will automatically merge the base controller data.
+     *
+     * @param string $viewName
+     * @param array $data 
+     * @return string
+     */
+    protected function render(string $viewName, array $data = []): string
+    {
+        // Merge controller-specific data with base layout data
+        $mergedData = array_merge($this->data, $data);
+        return view($viewName, $mergedData);
     }
 }

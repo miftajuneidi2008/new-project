@@ -13,6 +13,7 @@ $routes->get('images/(:segment)', 'ImageController::show/$1');
 $routes->get('/live', 'User::live');
 $routes->get('/admin', 'Admin::index', ['filter' => 'auth:admin']); // Apply auth filter for admin
 $routes->get('/news', 'NewsData::index');
+$routes->get('/about','User::about');
 $routes->get('/news/(:num)', 'NewsData::show/$1');
 $routes->get('/programs/(:num)', 'ProgramData::show/$1');
 $routes->post('/news/(:num)', 'NewsData::create/$1');
@@ -35,6 +36,15 @@ $routes->get('admin/site-link', 'Admin::siteLink', ['filter' => 'auth:admin']);
 $routes->delete('admin/links/delete/(:num)', 'Admin::delete_link/$1', ['filter' => 'auth:admin']);
 $routes->post('admin/links/update/(:num)', 'Admin::update_link/$1', ['filter' => 'auth:admin']);
 $routes->post('admin/logo/update/(:num)', 'Admin::update_logo/$1', ['filter' => 'auth:admin']);
+$routes->get('admin/adds/', 'Adds::index', ['filter' => 'auth:admin']);
+$routes->post('admin/adds/', 'Adds::create', ['filter' => 'auth:admin']);
+$routes->post('admin/adds/update/(:num)', 'Adds::update_add/$1', ['filter' => 'auth:admin']);
+$routes->delete('admin/adds/delete/(:num)', 'Adds::delete_add/$1', ['filter' => 'auth:admin']);
+
+
+
+
+
 
 
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
@@ -50,6 +60,14 @@ $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
 });
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
     $routes->resource('program', ['controller' => 'Program']);
+});
+
+$routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
+    $routes->resource('schedule', ['controller' => 'Schedule']);
+});
+
+$routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
+    $routes->resource('about', ['controller' => 'About']);
 });
 
 

@@ -36,7 +36,9 @@
                             </div>
                             <div class="col-md-8 d-flex flex-column">
                                 <div class="card-body">
-                                    <h5 class="card-title fs-4"><a href="/news/<?=esc($bussiness_data['id'])?>"><?= esc($bussiness_data['title']) ?></a></h5>
+                                    <h5 class="card-title fs-4"><a
+                                            href="/news/<?= esc($bussiness_data['id']) ?>"><?= esc($bussiness_data['title']) ?></a>
+                                    </h5>
                                     <p class="card-text text-secondary"><?= $summary ?></p>
                                     <p class="card-text"><small
                                             class="text-muted"><?= (new Time($bussiness_data['created_at']))->format('M j, Y') ?></small>
@@ -63,6 +65,14 @@
                                 </li>
                             <?php endforeach ?>
                         </ol>
+                        <?php if (!empty($adds)): ?>
+
+                            <div>
+                                <h2 class="text-center" style="font-size:20px;">ማስታወቅያ</h2>
+                                <img src="<?= base_url('images/' . $adds[0]['photo']) ?>" alt="adds"
+                                    style="width:100%; height:300px;" />
+                            </div>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\AddsModel;
 use App\Models\NewsCategoryModel;
 use App\Models\NewsModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
@@ -38,13 +39,14 @@ class NewsData extends BaseController
         $data['selectedCategoryTitle'] = $selectedCategoryTitle;
         $data['categories'] = $categoryModel->findAll();
         $data['popular'] = $news_model->getPopularNews();
-        return view('news', $data);
+        return $this->render('news', $data);
     }
 
 
     public function show($id = null)
     {
         $news_model = new NewsModel();
+        $adds_model = new AddsModel();
 
         // Fetch the single news article from the model
         $news_model->incrementViewCount($id);
@@ -58,8 +60,9 @@ class NewsData extends BaseController
 
         $data['news'] = $news_data;
         $data['popular'] = $news_model->getPopularNews($id);
+        $data['adds'] = $adds_model->findAll();
 
-        return view('news_detail', $data);
+        return $this->render('news_detail', $data);
     }
 
     public function sport()
@@ -85,12 +88,13 @@ class NewsData extends BaseController
         $data['pager'] = $pager->makeLinks($page, $perPage, $total, 'bootstrap5_pagination');
         $data['sport'] = array_slice($allNews, ($page - 1) * $perPage, $perPage);
         $data['popular'] = $news_model->getPopularNews();
-        return view('sport', $data);
+        return $this->render('sport', $data);
     }
 
     public function business()
     {
         $news_model = new NewsModel();
+        $adds_model = new AddsModel();
         $categoryModel = new NewsCategoryModel();
 
 
@@ -111,7 +115,8 @@ class NewsData extends BaseController
         $data['pager'] = $pager->makeLinks($page, $perPage, $total, 'bootstrap5_pagination');
         $data['bussiness'] = array_slice($allNews, ($page - 1) * $perPage, $perPage);
         $data['popular'] = $news_model->getPopularNews();
-        return view('bussiness', $data);
+        $data['adds'] = $adds_model->findAll();
+        return $this->render('bussiness', $data);
     }
 
     public function create($id = null)
