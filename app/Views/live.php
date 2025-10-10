@@ -129,15 +129,12 @@
     <?php if (!empty($schedule)): ?>
         <div class="container">
             <h2 class="text-center my-4" style="margin-top:20px;">ሳምንታዊ መርሐግብር</h2>
-            <div class="news-content lead text-center">
-                <?= nl2br($schedule[0]['description']) ?>
+            <div style="width:80%; overflow:hidden;margin-inline:auto;">
+                <img src="<?= base_url('images/' . $schedule[0]['photo']) ?>" class="img-fluid rounded mb-2"
+                alt="schedule" style="width:100%; overflow:hidden;margin-inline:auto;">
             </div>
         </div>
-    <?php else: ?>
-        <p>
-
-
-            ምንም መርሐግብር የለም።</p>
+ 
     <?php endif; ?>
 
 </div>

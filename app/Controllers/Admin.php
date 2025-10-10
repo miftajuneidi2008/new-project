@@ -28,6 +28,9 @@ class Admin extends BaseController
         $data['program'] = $program_model->countAll();
         $data['program_category'] = $program_category->countAll();
         $data['news_category'] = $news_category->countAll();
+        $data['popularN'] = $news_model->getPopularNews();
+        $data['popularP'] = $program_model->getPopularPost();
+
         return view('/admin/index', $data);
     }
     public function links()

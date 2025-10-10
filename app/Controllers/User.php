@@ -35,7 +35,7 @@ class User extends BaseController
         $data['audio'] = $model->getAudio();
         $data['video'] = $model->getVideo();
         $data['schedule'] = $schedule_model->findAll();
-        return view('live', $data);
+        return $this->render('live', $data);
     }
     public function about()
     {

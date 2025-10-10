@@ -41,7 +41,10 @@ $routes->post('admin/adds/', 'Adds::create', ['filter' => 'auth:admin']);
 $routes->post('admin/adds/update/(:num)', 'Adds::update_add/$1', ['filter' => 'auth:admin']);
 $routes->delete('admin/adds/delete/(:num)', 'Adds::delete_add/$1', ['filter' => 'auth:admin']);
 
-
+$routes->get('admin/schedule/', 'Schedule::index', ['filter' => 'auth:admin']);
+$routes->post('admin/schedule/', 'Schedule::create', ['filter' => 'auth:admin']);
+$routes->post('admin/schedule/update/(:num)', 'Schedule::update_add/$1', ['filter' => 'auth:admin']);
+$routes->delete('admin/schedule/delete/(:num)', 'Schedule::delete_add/$1', ['filter' => 'auth:admin']);
 
 
 
@@ -60,10 +63,6 @@ $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
 });
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
     $routes->resource('program', ['controller' => 'Program']);
-});
-
-$routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {
-    $routes->resource('schedule', ['controller' => 'Schedule']);
 });
 
 $routes->group('admin', ['filter' => 'auth:admin'], static function ($routes) {

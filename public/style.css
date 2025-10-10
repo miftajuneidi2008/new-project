@@ -571,3 +571,121 @@ body{
     font-weight: 700;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
 }
+
+    .login-container {
+        min-height: 100vh; /* Ensure it takes full viewport height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px; /* Add some padding for smaller screens */
+    }
+
+    .login-card {
+        width: 100%;
+        max-width: 400px; /* Increased max-width for a slightly larger card */
+        border: none; /* Remove default Bootstrap card border */
+        border-radius: 15px; /* Softer rounded corners */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* A more pronounced, soft shadow */
+        padding: 30px; /* Increased padding inside the card */
+        text-align: center; /* Center align content within the card */
+    }
+
+    .login-card .card-title {
+        font-size: 2.2rem; /* Larger, more welcoming title */
+        font-weight: 700; /* Bolder text */
+        color: #343a40; /* Darker text for good contrast */
+        margin-bottom: 30px; /* More space below the title */
+    }
+
+    .btn-google {
+        background-color: #e65c00; /* Google's iconic red */
+        color: #fff; /* White text for contrast */
+        border: none;
+        border-radius: 8px; /* Slightly rounded corners for the button */
+        padding: 12px 25px; /* More padding for a larger click area */
+        font-size: 1.1rem; /* Larger font size for button text */
+        font-weight: 600;
+        display: flex; /* Use flexbox for icon and text alignment */
+        align-items: center; /* Vertically align items */
+        justify-content: center; /* Horizontally center content */
+        gap: 10px; /* Space between icon and text */
+        width: 100%; /* Make button span full width of its container */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for the button */
+    }
+
+    .btn-google:hover {
+        background-color: #c23321; /* Darker red on hover */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+        color: #fff; /* Ensure text remains white on hover */
+    }
+
+    /* You would typically load Google's own icon or use a font-awesome equivalent */
+    /* For demonstration, we'll create a simple 'G' icon with CSS */
+    .btn-google::before {
+        content: 'G'; /* Simple 'G' as an icon placeholder */
+        font-family: 'Roboto', sans-serif; /* Use Roboto for the G */
+        font-weight: 700;
+        font-size: 1.3em;
+        line-height: 1;
+        margin-right: 8px;
+        color: #fff;
+        display: inline-block;
+        /* For a more accurate Google G, you'd embed an SVG or use a Google Fonts icon */
+    }
+
+    .error-message {
+        background-color: #f8d7da; /* Light red background */
+        color: #721c24; /* Dark red text */
+        border: 1px solid #f5c6cb;
+        border-radius: 8px;
+        padding: 15px 20px;
+        margin-bottom: 25px; /* Space below the error message */
+        text-align: left; /* Align error text to left */
+        font-size: 0.95rem;
+    }
+
+    /* Custom CSS for a more refined look */
+    .about-section {
+        padding: 30px 0; /* More vertical padding */
+        background-color: #f8f9fa; /* Light background for contrast */
+        color: #343a40; /* Darker text for readability */
+    }
+    .about-section h3 {
+        font-size: 3rem; /* Larger and more prominent heading */
+        margin-bottom: 10px; /* Space below heading */
+        color: #e65c00; /* Primary brand color for the heading */
+        position: relative;
+        padding-bottom: 15px; /* Space for an underline effect */
+    }
+
+    .about-content {
+        max-width: 900px; /* Slightly wider content area */
+        margin-inline: auto;
+        font-size: 1.15rem; /* Larger body text for better readability */
+        line-height: 1.8; /* Increased line height for comfort */
+        text-align: justify; /* Justify text for a cleaner look */
+    }
+    .about-content p {
+        margin-bottom: 25px; /* More space between paragraphs */
+    }
+    /* Adding a subtle shadow for a card-like effect if desired */
+    .about-card {
+      
+        padding: 40px;
+        border-radius: 10px;
+     
+    }
+
+    .navbar .nav-item .btn-outline-danger.btn-live-active {
+    background-color: #e65c00 !important; /* The border color of btn-outline-danger */
+    color: #fff !important; /* White text */
+    border-color: #e65c00 !important; /* Keep the border color consistent */
+}
+
+/* New style for the active "Login" button */
+.navbar .nav-item .btn-outline-primary.btn-login-active {
+    background-color: #0d6efd !important; /* Bootstrap's primary blue */
+    color: #fff !important; /* White text */
+    border-color: #0d6efd !important; /* Keep the border color consistent */
+}

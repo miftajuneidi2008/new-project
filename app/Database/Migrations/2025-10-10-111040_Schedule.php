@@ -6,19 +6,21 @@ use CodeIgniter\Database\Migration;
 
 class Schedule extends Migration
 {
-     public function up()
+ public function up()
     {
-    $this->forge->addField([
+   $this->forge->addField([
             'id' => [
-                'type' => 'INT',
-                'constraint' => 11,
-                'unsigned' => true,
+                'type'           => 'INT',
+                'constraint'     => 11,
+                'unsigned'       => true,
                 'auto_increment' => true,
             ],
-                 'description' => [
-                'type' => 'TEXT',
-                'null' => true,
+     
+              'photo' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
             ],
+        
             'created_at' => [
                 'type' => 'DATETIME',
                 'null' => true,
@@ -28,6 +30,7 @@ class Schedule extends Migration
                 'null' => true,
             ],
         ]);
+
         $this->forge->addKey('id', true);
         $this->forge->createTable('schedule');
     }

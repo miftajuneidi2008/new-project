@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
+    <title></title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="<?php echo base_url('assets/css/styles.css'); ?>" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -16,7 +16,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
+        <a class="navbar-brand ps-3" href="/admin">ዳሽቦርድ</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -46,51 +46,51 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading"></div>
                         <a class="nav-link" href="<?php echo base_url('admin/'); ?>">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"></div>
                             መነሻ ገጽ
                         </a>
 
                         <a class="nav-link" href="<?php echo base_url('admin/news/'); ?>">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"></div>
                             የዜና ገጽ
                         </a>
                         <a class="nav-link" href="<?php echo base_url('admin/program'); ?>">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"></div>
                             የፕሮግራም ገጽ
                             <a class="nav-link" href="<?php echo base_url('admin/program_category'); ?>">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"></div>
 
                                 የፕሮግራም ምድብ
                             </a>
                             <a class="nav-link" href="<?php echo base_url('admin/news_category'); ?>">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"></div>
 
                                 የዜና ምድብ
                             </a>
 
                             <a class="nav-link" href="<?php echo base_url('admin/links'); ?>">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"></div>
 
                                 የቀጥታ አገናኝ
                             </a>
 
                             <a class="nav-link" href="<?php echo base_url('admin/schedule'); ?>">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"></div>
 
                                 መርሐግብር
 
                             </a>
 
                             <a class="nav-link" href="<?php echo base_url('admin/adds'); ?>">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"></div>
 
                                 ማስታወቂያ
 
                             </a>
 
-                                 <a class="nav-link" href="<?php echo base_url('admin/about'); ?>">
+                            <a class="nav-link" href="<?php echo base_url('admin/about'); ?>">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 
                                 የድርጅቱ መረጃ
@@ -114,13 +114,13 @@
 
             <footer class="py-4 bg-light mt-auto">
                 <div class="container-fluid px-4">
-                    <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                        <div>
-                            <a href="#">Privacy Policy</a>
-                            &middot;
-                            <a href="#">Terms &amp; Conditions</a>
+                    <div class="d-flex align-items-center justify-content-center small">
+                        <div class="text-muted"> <?php
+                        $currentYear = date('Y');
+                        ?>
+                            <p>&copy; <?= $currentYear ?> Siltite Radio. All Rights Reserved.</p>
                         </div>
+
                     </div>
                 </div>
             </footer>

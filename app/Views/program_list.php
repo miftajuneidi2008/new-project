@@ -65,7 +65,8 @@
                     <?= $pager ?>
                 </div>
             <?php else: ?>
-                <p>No programs found in this category.</p>
+                <p>
+                    በዚህ ምድብ ውስጥ ምንም ፕሮግራም አልተገኘም።</p>
             <?php endif; ?>
         </div>
 

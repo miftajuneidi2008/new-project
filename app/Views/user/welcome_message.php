@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
         integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Font Awesome CSS (Free version) - Add this line! -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@400;500&display=swap"
@@ -61,7 +65,10 @@
                     <button class="navbar-toggler border-0 text-black" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#top-navbar" aria-controls="navbar">
                         <div class="d-flex justify-content-between p-3">
-                            <p>Siltite fms</p>
+                            <a href="/">
+                                <img src="<?= base_url('images/' . $logo[0]['url']) ?>" alt="siltie fm logo" width="80"
+                                    height="70" aria-multiline="siltie fm">
+                            </a>
                             <i class="bi bi-list"></i>
                         </div>
 
@@ -89,12 +96,13 @@
 
                         </li>
                         <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                            <a class="btn btn-outline-danger" aria-current="page" href="/live"
-                                id="liveStreamButton">ቀጥታ</a>
+                            <a class="btn btn-outline-danger" aria-current="page" href="/live" id="liveStreamButton"><i
+                                    class="fas fa-broadcast-tower me-2"></i> ቀጥታ</a>
                         </li>
                         <?php if (session()->get('isLoggedIn')): ?>
                             <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                                <a class="btn btn-outline-primary" aria-current="page" href="<?= site_url('logout') ?>">
+                                <a class="btn btn-outline-primary d-flex justify-items-center" aria-current="page"
+                                    href="<?= site_url('logout') ?>">
                                     ዉጣ
                                 </a>
                             </li>
@@ -103,7 +111,8 @@
 
                             <!-- User is not logged in, show a message -->
                             <li class="nav-item px-3 px-lg-2 py-1 py-lg-4">
-                                <a class="btn btn-outline-primary" aria-current="page" href="/login">
+                                <a class="btn btn-outline-primary" aria-current="page" href="/login" id="loginButton">
+                                    <i class="fas fa-right-to-bracket me-2"></i>
                                     ግባ
                                 </a>
                             </li>
@@ -239,18 +248,27 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            // Get the current page's path
             const currentPage = window.location.pathname;
+            // Select all nav links, the live button, AND the login button
+            const navItems = document.querySelectorAll(
+                '.navbar-nav .nav-link, .navbar-nav .btn-outline-danger, .navbar-nav .btn-outline-primary'
+            );
 
-            // Get all the navigation links
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            navItems.forEach(item => {
+                // Remove existing active classes from all items
+                item.classList.remove('active');
+                item.classList.remove('btn-live-active');
+                item.classList.remove('btn-login-active'); // Remove login active class too
 
-            // Loop through each link
-            navLinks.forEach(link => {
-                // If the link's href matches the current page
-                if (link.getAttribute('href') === currentPage) {
-                    // Add the 'active' class to it
-                    link.classList.add('active');
+                // Check if the item's href matches the current page
+                if (item.getAttribute('href') === currentPage) {
+                    if (item.id === 'liveStreamButton') {
+                        item.classList.add('btn-live-active');
+                    } else if (item.id === 'loginButton') { // Check if it's the login button
+                        item.classList.add('btn-login-active');
+                    } else {
+                        item.classList.add('active'); // For regular nav links
+                    }
                 }
             });
         });

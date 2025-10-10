@@ -53,7 +53,8 @@ $ogUrl = current_url(true);
             </div>
 
             <div class="social-share my-4">
-                <h5 class="fw-bold mb-3">Share this article:</h5>
+                <h5 class="fw-bold mb-3">
+                    ይህን ጽሑፍ አጋራ</h5>
 
                 <?php
                 // Prepare the data for the share links
@@ -152,7 +153,7 @@ $ogUrl = current_url(true);
                                         onsubmit="return confirm('ADMIN ACTION: Are you sure you want to delete this comment?');">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">ሰርዝ (Admin)</button>
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">ሰርዝ</button>
                                     </form>
                                 <?php endif; ?>
                             </div>
@@ -200,7 +201,7 @@ $ogUrl = current_url(true);
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editCommentModalLabel">አስተያየት አሻሽል (Edit Comment)</h5>
+                        <h5 class="modal-title" id="editCommentModalLabel">አስተያየት አሻሽል </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
@@ -218,7 +219,7 @@ $ogUrl = current_url(true);
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ይቅር
                                 (Cancel)</button>
-                            <button type="submit" class="btn btn-primary">አዘምን (Update)</button>
+                            <button type="submit" class="btn btn-primary">አዘምን</button>
                         </div>
                     </form>
 

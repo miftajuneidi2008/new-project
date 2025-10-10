@@ -26,7 +26,7 @@ class Login extends BaseController
     public function index(): string
     {
          $data['googleAuthUrl'] = $this->googleClient->createAuthUrl();
-        return view('login',$data);
+        return $this->render('login',$data);
     }
 
      public function gmailCallback()

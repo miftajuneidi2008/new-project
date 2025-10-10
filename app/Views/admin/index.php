@@ -3,10 +3,7 @@
 
 <main>
     <div class="container-fluid px-4">
-        <ol class="breadcrumb mb-4 mt-2">
-            <li class="breadcrumb-item active">/admin</li>
-        </ol>
-        <div class="row">
+        <div class="row mt-4">
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-primary text-white mb-4">
                     <div class="card-body d-flex align-items-center justify-content-between">ጠቅላላ ዜና
@@ -55,24 +52,62 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row my-4">
             <div class="col-xl-6">
+                <?php if($popularN) :?>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-chart-area me-1"></i>
-                        Area Chart Example
+                     
+                        በብዛት የተነበቡ ዜናዎች
                     </div>
-                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ርዕስ</th>
+                                <th scope="col">የእይታ ብዛት</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($popularN as $popn): ?>
+                                <tr>
+                                    
+                                    <td><?= $popn['title'] ?></td>
+                                    <td><?= $popn['view_count'] ?></td>
+                                
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
                 </div>
+                <?php endif ?>
             </div>
             <div class="col-xl-6">
+              <?php if($popularP) :?>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-chart-bar me-1"></i>
-                        Bar Chart Example
+                     
+                        በብዛት የተነበቡ ፕሮግራሞች
                     </div>
-                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                    <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ርዕስ</th>
+                                <th scope="col">የእይታ ብዛት</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($popularP as $popp): ?>
+                                <tr>
+                                    
+                                    <td><?= $popp['title'] ?></td>
+                                    <td><?= $popp['view_count'] ?></td>
+                                
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
                 </div>
+                <?php endif ?>
             </div>
         </div>
 
